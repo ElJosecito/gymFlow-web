@@ -37,7 +37,7 @@ function Header() {
     return (
         <header className='w-full flex justify-center fixed z-[10000]  '>
             <div className={` w-full  px-0`}>
-                <nav className={`flex justify-between items-center w-full h-20 px-8 rounded-b-md backdrop-blur-lg transition-all duration-500  ${scroll ? 'bg-[#E6F6FE] ' : 'bg-transparent'}`}>
+                <nav className={`flex justify-between items-center w-full h-20 px-8 rounded-b-md transition-all duration-500  ${scroll ? 'bg-[#E6F6FE] ' : 'bg-transparent'}`}>
                     <div className='text-2xl font-bold'>
                         {/* <Image src={logo} alt="" /> */}
                         Logo

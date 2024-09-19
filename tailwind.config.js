@@ -6,10 +6,15 @@ export default {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        'poppins': ['Poppins', 'sans-serif'],
+        'roboto': ['Roboto', 'sans-serif'],
+        'bungee': 'bungee-tint-regular'
+      },
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
-        primary: "#1F68F6",
+        primary: "#C90900",
         secondary: "#011632",
         darkblue: "#0C1524",
         back_white: "#f4f4f4",
