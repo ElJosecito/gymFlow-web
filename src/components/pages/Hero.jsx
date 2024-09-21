@@ -2,6 +2,14 @@ import { motion } from 'framer-motion'
 import { PlayCircle } from 'lucide-react'
 
 import muscle from '../../assets/images/muscle.png'
+import rectangle1 from '../../assets/images/Rectangle1.png'
+import rectangle2 from '../../assets/images/Rectangle2.png'
+import rectangle3 from '../../assets/images/Rectangle3.png'
+
+// trinaers
+import trainer1 from '../../assets/images/trainer1.png'
+import trainer2 from '../../assets/images/trainer2.png'
+import trainer3 from '../../assets/images/trainer3.png'
 
 function Hero() {
     return (
@@ -31,7 +39,7 @@ function Hero() {
                             <motion.button
                                 whileHover={{ scale: 1.1 }}
                                 whileTap={{ scale: 0.9 }}
-                                className=' text-seconday rounded-xl p-4 font-semibold flex'>
+                                className=' text-secondary rounded-xl p-4 font-semibold flex'>
                                 <PlayCircle className='mr-2' />
                                 Play Videos
                             </motion.button>
@@ -62,10 +70,10 @@ function Hero() {
                 </div>
             </div>
 
-            <section className="min-h-screen flex items-center justify-center pt-28">
+            <section className="min-h-screen flex  justify-center pt-28">
                 <div className="w-full max-w-screen-2xl">
                     <div className='flex flex-col items-center'>
-                        <h2 className="text-5xl font-bold text-center w-full bungee-tint-regular">Our Services</h2>
+                        <h2 className="text-5xl font-bold text-center w-full ">Why Choose Us?</h2>
                         <p className="text-center text-[#00000056] mt-8 px-3">
                             Lorem Ipsum is simply dummy text of the printing and typesetting industry.
                             Lorem Ipsum has been the industrys standard dummy text ever since the 1500s,
@@ -73,20 +81,117 @@ function Hero() {
                         </p>
                     </div>
 
-                    <div className='h-screen'>
-                        <div className="flex justify-center lg:w-3/5 h-full bg-slate-500">
-                            <div className='grid grid-cols-5 grid-rows-5 gap-4'>
-                                <div className='bg-white flex w-96 h-28'>
-                                    <div className='bg-white '></div>
+                    <div className='pt-20 flex items-center'>
+                        <div className="flex justify-center items-center lg:w-3/5 h-full ">
+                            <div className='grid grid-cols-2 grid-rows-2 gap-4'>
+                                <div className=' flex w-96 p-3 py-4'>
+                                    <div className='bg-white pr-3'>
+                                        <div className='bg-black h-8 w-8 rounded-full'>
+                                        </div>
+                                    </div>
+                                    <div className='bg-white '>
+                                        <h1 className='font-bold text-xl mb-2'>Heading</h1>
+                                        <p className='font-light text-sm text-[#00000056] pr-5'>Lorem ipsum dolor sit amet consectetur adipisicing elit. amet consectetur adipisicing.</p>
+                                    </div>
                                 </div>
-                                <div className='bg-white'></div>
-                                <div className='bg-white'></div>
-                                <div className='bg-white'></div>
+                                {/*  */}
+                                <div className=' flex w-96 p-3 py-4'>
+                                    <div className='bg-white pr-3'>
+                                        <div className='bg-black h-8 w-8 rounded-full'>
+                                        </div>
+                                    </div>
+                                    <div className='bg-white '>
+                                        <h1 className='font-bold text-xl mb-2'>Heading</h1>
+                                        <p className='font-light text-sm text-[#00000056] pr-5'>Lorem ipsum dolor sit amet consectetur adipisicing elit. amet consectetur adipisicing.</p>
+                                    </div>
+                                </div>
+                                {/*  */}
+                                <div className=' flex w-96 p-3 py-4'>
+                                    <div className='bg-white pr-3'>
+                                        <div className='bg-black h-8 w-8 rounded-full'>
+                                        </div>
+                                    </div>
+                                    <div className='bg-white '>
+                                        <h1 className='font-bold text-xl mb-2'>Heading</h1>
+                                        <p className='font-light text-sm text-[#00000056] pr-5'>Lorem ipsum dolor sit amet consectetur adipisicing elit. amet consectetur adipisicing.</p>
+                                    </div>
+                                </div>
+                                {/*  */}
+                                <div className=' flex w-96 p-3 py-4'>
+                                    <div className='bg-white pr-3'>
+                                        <div className='bg-black h-8 w-8 rounded-full'>
+                                        </div>
+                                    </div>
+                                    <div className='bg-white '>
+                                        <h1 className='font-bold text-xl mb-2'>Heading</h1>
+                                        <p className='font-light text-sm text-[#00000056] pr-5'>Lorem ipsum dolor sit amet consectetur adipisicing elit. amet consectetur adipisicing.</p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <div className='lg:w-2/5 bg-slate-600'></div>
+                        <div className='lg:w-2/5  p-3'>
+                            <div className='grid grid-cols-2 grid-rows-2 gap-4'>
+                                <div className=' rounded-2xl shadow-xl'>
+                                    <img src={rectangle1} alt="muscle" className='w-full h-full object-cover rounded-2xl' />
+                                </div>
+                                <div className="col-start-1 row-start-2 bg-white rounded-2xl shadow-xl">
+                                    <img src={rectangle2} alt="muscle" className='w-full h-full object-cover rounded-2xl' />
+                                </div>
+                                <div className="row-span-2 col-start-2 row-start-1 w-72 min-h-[400px] rounded-2xl bg-white shadow-xl">
+                                    <img src={rectangle3} alt="muscle" className='w-full h-full object-cover rounded-2xl' />
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
+                </div>
+            </section>
+
+
+            <section className="min-h-screen flex  justify-center">
+                <div className='w-full max-w-screen-2xl'>
+                    <div className='flex flex-col items-center'>
+                        <h2 className="text-5xl font-bold text-center w-full">Meet Our Trainers</h2>
+                        <p className="text-center text-[#00000056] mt-8 px-32">
+                            Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                            Lorem Ipsum has been the industrys standard dummy text ever since the 1500s,
+                            when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+                        </p>
+                    </div>
+
+                    <div className='flex items-center justify-around mt-28'>
+                        <div className='flex flex-col items-center group shadow-lg rounded-2xl overflow-hidden'>
+                            <div className='relative'>
+                                <img src={trainer1} alt="trainer" className='w-80 h-96 object-cover' />
+                                <div className='absolute w-full h-full bg-black/20 backdrop-blur-sm transition-all duration-500 top-0 opacity-0 group-hover:opacity-100 p-8 cursor-pointer'>
+                                    <h2 className='text-white font-bold text-2xl'>Trainer Name</h2>
+                                    <p className='text-white font-light text-sm'>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                                </div>
+                            </div>
+                        </div>
+                        {/*  */}
+
+                        <div className='flex flex-col items-center group shadow-lg rounded-2xl overflow-hidden'>
+                            <div className='relative'>
+                                <img src={trainer2} alt="trainer" className='w-80 h-96 object-cover' />
+                                <div className='absolute w-full h-full bg-black/20 backdrop-blur-sm transition-all duration-500 top-0 opacity-0 group-hover:opacity-100 p-8 cursor-pointer'>
+                                    <h2 className='text-white font-bold text-2xl'>Trainer Name</h2>
+                                    <p className='text-white font-light text-sm'>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                                </div>
+                            </div>
+                        </div>
+                        {/*  */}
+
+                        <div className='flex flex-col items-center group shadow-lg rounded-2xl overflow-hidden'>
+                            <div className='relative'>
+                                <img src={trainer3} alt="trainer" className='w-80 h-96 object-cover' />
+                                <div className='absolute w-full h-full bg-black/20 backdrop-blur-sm transition-all duration-500 top-0 opacity-0 group-hover:opacity-100 p-8 cursor-pointer'>
+                                    <h2 className='text-white font-bold text-2xl'>Trainer Name</h2>
+                                    <p className='text-white font-light text-sm'>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </section>
 

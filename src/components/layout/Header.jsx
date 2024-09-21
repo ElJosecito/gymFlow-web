@@ -37,7 +37,7 @@ function Header() {
     return (
         <header className='w-full flex justify-center fixed z-[10000]  '>
             <div className={` w-full  px-0`}>
-                <nav className={`flex justify-between items-center w-full h-20 px-8 rounded-b-md transition-all duration-500  ${scroll ? 'bg-[#E6F6FE] ' : 'bg-transparent'}`}>
+                <nav className={`flex justify-between items-center w-full h-20 px-8 rounded-b-md transition-all duration-500  ${scroll ? 'bg-back_white ' : 'bg-transparent'}`}>
                     <div className='text-2xl font-bold'>
                         {/* <Image src={logo} alt="" /> */}
                         Logo
@@ -71,7 +71,7 @@ function Header() {
                         </button>
                     </div>
 
-                    <ul className={`flex flex-col gap-8 font-semibold text-base ${mobileMenu} lg:hidden absolute top-20 left-0 right-0 ${scroll ? 'bg-[#E6F6FE] shadow-lg' : 'bg-white'} rounded-md shadow-lg p-8 transition-all duration-500`}>
+                    <ul className={`flex flex-col gap-8 font-semibold text-base ${mobileMenu} lg:hidden absolute top-20 left-0 right-0 ${scroll ? 'bg-back_white shadow-lg' : 'bg-white'} rounded-md shadow-lg p-8 transition-all duration-500`}>
                         <motion.li whileHover={{ scale: 1.2 }} className='text-sm' onClick={handleMenu}>
                             <a href='/#'>Home</a>
                         </motion.li>
