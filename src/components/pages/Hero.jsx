@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { PlayCircle } from 'lucide-react'
+import { PlayCircle, CircleCheck, Ban } from 'lucide-react'
 
 import muscle from '../../assets/images/muscle.png'
 import rectangle1 from '../../assets/images/Rectangle1.png'
@@ -70,7 +70,7 @@ function Hero() {
                 </div>
             </div>
 
-            <section className="min-h-screen flex  justify-center pt-28">
+            <section className=" flex  justify-center py-28">
                 <div className="w-full max-w-screen-2xl">
                     <div className='flex flex-col items-center'>
                         <h2 className="text-5xl font-bold text-center w-full ">Why Choose Us?</h2>
@@ -148,7 +148,7 @@ function Hero() {
             </section>
 
 
-            <section className="min-h-screen flex  justify-center">
+            <section className="flex justify-center pb-40">
                 <div className='w-full max-w-screen-2xl'>
                     <div className='flex flex-col items-center'>
                         <h2 className="text-5xl font-bold text-center w-full">Meet Our Trainers</h2>
@@ -195,6 +195,144 @@ function Hero() {
                 </div>
             </section>
 
+            {/* plans section */}
+
+            <section className="min-h-screen flex  justify-center">
+                <div className='w-full max-w-screen-2xl'>
+
+                    <div className='flex flex-col items-center'>
+                        <p className="text-start text-[#00000056] font-bold mb-4 w-full">
+                            Pricing Plans
+                        </p>
+                        <h2 className="text-6xl font-extrabold text-start w-full">JOIN TODAY</h2>
+
+                        <div className='flex items-center justify-around mt-28 w-full'>
+                            {/*  */}
+                            <div className='flex flex-col shadow-[0px_10px_1px_rgba(221,_221,_221,_1),_0_10px_20px_rgba(204,_204,_204,_1)] rounded-2xl overflow-hidden w-[400px] h-[500px] px-5 py-8'>
+                                <h1 className='font-bold text-base'>Beginner Plan</h1>
+                                <div className='flex items-end mt-4'>
+                                    <p className='font-bold text-6xl leading-none '>$05</p>
+                                    <p className='font-bold text-sm pb-3'> /Per Month</p>
+                                </div>
+                                <p className='text-xs text-[#00000056] font-medium mt-3'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut </p>
+
+                                {/* beneficts list */}
+
+                                <ul className='mt-8'>
+                                    <li className='flex items-center gap-2 text-[#00000056] font-semibold my-2'>
+                                        <CircleCheck size={20} color='green'  strokeWidth={2.5} absoluteStrokeWidth/>
+                                        <p>Free Training</p>
+                                    </li>
+                                    <li className='flex items-center gap-2 text-[#00000056] font-semibold my-2'>
+                                        <CircleCheck size={20} color='green'  strokeWidth={2.5} absoluteStrokeWidth/>
+                                        <p>Free Training</p>
+                                    </li>
+                                    <li className='flex items-center gap-2 text-[#00000056] font-semibold my-2'>
+                                        <CircleCheck size={20} color='green'  strokeWidth={2.5} absoluteStrokeWidth/>
+                                        <p>Free Training</p>
+                                    </li>
+                                    <li className='flex items-center gap-2 text-[#00000056] font-semibold my-2'>
+                                        <Ban size={20} color='red'  strokeWidth={2.5} absoluteStrokeWidth/>
+                                        <p>Free Training</p>
+                                    </li>
+                                    <li className='flex items-center gap-2 text-[#00000056] font-semibold my-2'>
+                                        <Ban size={20} color='red'  strokeWidth={2.5} absoluteStrokeWidth />
+                                        <p>Free Training</p>
+                                    </li>
+                                </ul>
+
+                                <motion.button 
+                                whileHover={{ scale: 1.05 }}
+                                whileTap={{ scale: 0.9 }}
+                                className='bg-primary text-white rounded-xl p-4 font-semibold mt-8'>Book Now</motion.button>
+
+                            </div>
+                            {/*  */}
+
+                            <div className='flex flex-col bg-[#1F1F1F] text-white shadow-[0px_10px_1px_rgba(221,_221,_221,_1),_0_10px_20px_rgba(204,_204,_204,_1)] rounded-2xl overflow-hidden w-[400px] h-[500px] px-5 py-8'>
+                                <h1 className='font-bold text-base'>Premium Plan</h1>
+                                <div className='flex items-end mt-4'>
+                                    <p className='font-bold text-6xl leading-none '>$15</p>
+                                    <p className='font-bold text-sm pb-3'> /Per Month</p>
+                                </div>
+                                <p className='text-xs text-[#ffffff56] font-medium mt-3'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut </p>
+
+                                {/* beneficts list */}
+
+                                <ul className='mt-8'>
+                                    <li className='flex items-center gap-2 text-[#ffffff56] font-semibold my-2'>
+                                        <CircleCheck size={20} color='green'  strokeWidth={2.5} absoluteStrokeWidth/>
+                                        <p>Free Training</p>
+                                    </li>
+                                    <li className='flex items-center gap-2 text-[#ffffff56] font-semibold my-2'>
+                                        <CircleCheck size={20} color='green'  strokeWidth={2.5} absoluteStrokeWidth/>
+                                        <p>Free Training</p>
+                                    </li>
+                                    <li className='flex items-center gap-2 text-[#ffffff56] font-semibold my-2'>
+                                        <CircleCheck size={20} color='green'  strokeWidth={2.5} absoluteStrokeWidth/>
+                                        <p>Free Training</p>
+                                    </li>
+                                    <li className='flex items-center gap-2 text-[#ffffff56] font-semibold my-2'>
+                                        <Ban size={20} color='red'  strokeWidth={2.5} absoluteStrokeWidth/>
+                                        <p>Free Training</p>
+                                    </li>
+                                    <li className='flex items-center gap-2 text-[#ffffff56] font-semibold my-2'>
+                                        <Ban size={20} color='red'  strokeWidth={2.5} absoluteStrokeWidth />
+                                        <p>Free Training</p>
+                                    </li>
+                                </ul>
+
+                                <motion.button 
+                                whileHover={{ scale: 1.05 }}
+                                whileTap={{ scale: 0.9 }}
+                                className='bg-white text-primary rounded-xl p-4 font-semibold mt-8'>Book Now</motion.button>
+                            </div>
+
+                            {/*  */}
+
+                            <div className='flex flex-col  shadow-[0px_10px_1px_rgba(221,_221,_221,_1),_0_10px_20px_rgba(204,_204,_204,_1)] rounded-2xl overflow-hidden w-[400px] h-[500px] px-5 py-8'>
+                                <h1 className='font-bold text-base'>Expert Plan</h1>
+                                <div className='flex items-end mt-4'>
+                                    <p className='font-bold text-6xl leading-none '>$20</p>
+                                    <p className='font-bold text-sm pb-3'> /Per Month</p>
+                                </div>
+                                <p className='text-xs text-[#00000056] font-medium mt-3'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut </p>
+
+                                {/* beneficts list */}
+
+                                <ul className='mt-8'>
+                                    <li className='flex items-center gap-2 text-[#00000056] font-semibold my-2'>
+                                        <CircleCheck size={20} color='green'  strokeWidth={2.5} absoluteStrokeWidth/>
+                                        <p>Free Training</p>
+                                    </li>
+                                    <li className='flex items-center gap-2 text-[#00000056] font-semibold my-2'>
+                                        <CircleCheck size={20} color='green'  strokeWidth={2.5} absoluteStrokeWidth/>
+                                        <p>Free Training</p>
+                                    </li>
+                                    <li className='flex items-center gap-2 text-[#00000056] font-semibold my-2'>
+                                        <CircleCheck size={20} color='green'  strokeWidth={2.5} absoluteStrokeWidth/>
+                                        <p>Free Training</p>
+                                    </li>
+                                    <li className='flex items-center gap-2 text-[#00000056] font-semibold my-2'>
+                                        <Ban size={20} color='red'  strokeWidth={2.5} absoluteStrokeWidth/>
+                                        <p>Free Training</p>
+                                    </li>
+                                    <li className='flex items-center gap-2 text-[#00000056] font-semibold my-2'>
+                                        <Ban size={20} color='red'  strokeWidth={2.5} absoluteStrokeWidth />
+                                        <p>Free Training</p>
+                                    </li>
+                                </ul>
+
+                                <motion.button 
+                                whileHover={{ scale: 1.05 }}
+                                whileTap={{ scale: 0.9 }}
+                                className='bg-primary text-white rounded-xl p-4 font-semibold mt-8'>Book Now</motion.button>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </section>
         </>
     )
 }

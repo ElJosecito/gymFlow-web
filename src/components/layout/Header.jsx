@@ -11,6 +11,7 @@ import { Menu, X } from 'lucide-react'
 function Header() {
 
     const [scroll, setScroll] = useState(false)
+    const [isLogged, setIsLogged] = useState(false)
 
     useEffect(() => {
         window.addEventListener('scroll', () => {
@@ -57,12 +58,32 @@ function Header() {
                         </motion.li>
                     </ul>
 
-                    <motion.button
-                        whileHover={{ scale: 1.1 }}
-                        whileTap={{ scale: 0.9 }}
-                        className='bg-primary text-white px-8 py-4 text-sm rounded-xl font-semibold hidden lg:flex'>
-                        Book Now
-                    </motion.button>
+                    {
+                        isLogged ? (
+                            // user logged profile
+                            <div className='flex gap-4 items-center'>
+                                <div className='flex items-center gap-4'>
+                                    <img src='https://randomuser.me/api/portraits/women/88.jpg' alt="user" className='w-10 h-10 rounded-full' />
+                                    <p className={`text-lg font-semibold ${scroll ? 'text-black' : 'text-white'}`}>User</p>
+                                </div>
+                            </div>
+                        ) : (
+                            <div className='flex gap-4'>
+                                <motion.button
+                                    whileHover={{ scale: 1.1 }}
+                                    whileTap={{ scale: 0.9 }}
+                                    className='bg-primary text-white px-8 h-12 text-sm rounded-xl font-semibold'>
+                                    Login
+                                </motion.button>
+                                <motion.button
+                                    whileHover={{ scale: 1.1 }}
+                                    whileTap={{ scale: 0.9 }}
+                                    className={`outline-2 outline ${scroll ? 'outline-primary text-primary' : 'outline-white text-white'} px-8 h-12 text-md rounded-xl font-bold`}>
+                                    Register
+                                </motion.button>
+                            </div>
+                        )
+                    }
 
                     {/* mobile menu */}
                     <div className='lg:hidden flex items-center'>
