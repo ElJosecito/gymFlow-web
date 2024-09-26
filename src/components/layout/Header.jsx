@@ -7,6 +7,8 @@ import { motion } from 'framer-motion'
 // icons
 import { Menu, X } from 'lucide-react'
 
+//state management
+import { useAuthStore } from '../../store/auth'
 
 function Header() {
 
@@ -23,6 +25,17 @@ function Header() {
         })
     }, [])
 
+
+    // check if user is logged
+    const { token } = useAuthStore()
+
+    useEffect(() => {
+        if (token) {
+            setIsLogged(true)
+        } else {
+            setIsLogged(false)
+        }
+    }, [token])
 
     // mobile menu
     const [menu, setMenu] = useState(false)

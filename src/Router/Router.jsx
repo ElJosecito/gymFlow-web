@@ -8,14 +8,26 @@ import Footer from '../components/layout/Footer'
 //hero
 import Hero from '../components/pages/Hero'
 
+// login
+import Login from '../components/pages/Login'
+
+//register
+import Register from '../components/pages/Register'
+
+
 
 function Router() {
 
+    const path = window.location.pathname
+
     return (
         <>
-            <Header />
+            {path === '/' || path === '/register' ? null : <Header />}
+
             <Routes>
-                <Route path="/" element={<Hero/>} />
+                <Route path="/" element={<Login/>} />
+                <Route path="/register" element={<Register />} />
+                <Route path="/hero" element={<Hero />} />
                 <Route path="/about" element={
                     <>
                         <h1>About</h1>

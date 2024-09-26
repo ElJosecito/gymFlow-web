@@ -1,3 +1,5 @@
+import { useState, useEffect } from 'react'
+
 import { motion } from 'framer-motion'
 import { PlayCircle, CircleCheck, Ban } from 'lucide-react'
 
@@ -11,7 +13,9 @@ import trainer1 from '../../assets/images/trainer1.png'
 import trainer2 from '../../assets/images/trainer2.png'
 import trainer3 from '../../assets/images/trainer3.png'
 
+
 function Hero() {
+
     return (
         <>
             <section className="min-h-screen flex items-center justify-center relative">
