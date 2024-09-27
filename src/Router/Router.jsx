@@ -14,11 +14,13 @@ import Login from '../components/pages/Login'
 //register
 import Register from '../components/pages/Register'
 
+//profile
+import Profile from '../components/pages/Profile'
+
 //protected route
 import ProtectedRoute from '../components/layout/ProtectedRoute'
 
 //useLocation
-
 import { useLocation } from 'react-router-dom'
 
 
@@ -44,6 +46,7 @@ function Router() {
 
                 <Route element={<ProtectedRoute isAuth={isAuth} />}>
                     {/* protected routes */}
+                    <Route path="/profile" element={<Profile />} />
                     <Route path="/dashboard" element={<h1>Dashboard</h1>} />
                 </Route>
 
