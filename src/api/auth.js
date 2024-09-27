@@ -1,8 +1,8 @@
-import axios from 'axios';
+import axios from '../libs/axios';
 
 export const login = async (email, password) => {
     try {
-        const response = await axios.post('http://localhost:3000/api/v1/auth/login', { email, password });
+        const response = (await axios.post('/auth/login', { email, password }));
         return response.data;
     } catch (error) {
         return error.response.data;
@@ -12,7 +12,7 @@ export const login = async (email, password) => {
 
 export const register = async (email, password, firstName, lastName, number) => {
     try {
-        const response = await axios.post('http://localhost:3000/api/v1/auth/register', { email, password, firstName, lastName, number });
+        const response = await axios.post('/auth/register', { email, password, firstName, lastName, number });
         return response.data;
     } catch (error) {
         return error.response.data;

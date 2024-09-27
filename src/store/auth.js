@@ -5,11 +5,12 @@ export const useAuthStore = create(persist(
     (set) => ({
         token: null,
         userId: null,
-        setToken: (token) => set({ token }),
+        isAuth: false,
+        setToken: (token) => set({ token, isAuth: true }),
         setUserId: (userId) => set({ userId }),
-    
-    }),{
-        name: "auth-storage",
-    }
+        logout: () => set({ token: null, userId: null, isAuth: false }),
+    }), {
+    name: "auth-storage",
+}
 ));
 

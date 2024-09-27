@@ -1,19 +1,20 @@
 import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 
-// logo vital dental center
-// import logo from '../../images/logo_vitaldental.png'
-
 // icons
 import { Menu, X } from 'lucide-react'
 
 //state management
 import { useAuthStore } from '../../store/auth'
 
+//get user data
+import { getUser } from '../../api/user'
+
 function Header() {
 
     const [scroll, setScroll] = useState(false)
-    const [isLogged, setIsLogged] = useState(false)
+    const isLogged = useAuthStore(state => state.isAuth)
+    const [user, setUser] = useState({})
 
     useEffect(() => {
         window.addEventListener('scroll', () => {
@@ -25,17 +26,16 @@ function Header() {
         })
     }, [])
 
-
     // check if user is logged
-    const { token } = useAuthStore()
+    const { token, userId } = useAuthStore()
 
     useEffect(() => {
         if (token) {
-            setIsLogged(true)
-        } else {
-            setIsLogged(false)
+            getUser(userId).then((response) => {
+                setUser(response)
+            })
         }
-    }, [token])
+    }, [token, userId])
 
     // mobile menu
     const [menu, setMenu] = useState(false)
@@ -77,7 +77,7 @@ function Header() {
                             <div className='flex gap-4 items-center'>
                                 <div className='flex items-center gap-4'>
                                     <img src='https://randomuser.me/api/portraits/women/88.jpg' alt="user" className='w-10 h-10 rounded-full' />
-                                    <p className={`text-lg font-semibold ${scroll ? 'text-black' : 'text-white'}`}>User</p>
+                                    <p className={`text-lg font-semibold capitalize ${scroll ? 'text-black' : 'text-white'}`}>{`${user.firstName} ${user.lastName}`}</p>
                                 </div>
                             </div>
                         ) : (
