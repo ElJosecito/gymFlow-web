@@ -4,10 +4,10 @@ import { Navigate, Outlet } from "react-router-dom"
 function ProtectedRoute({children, isAuth}) {
 
         if (!isAuth) {
-            return<Navigate to='/login' />
+            return<Navigate to='/' />
         }
 
-    return children ? children : <Outlet />
+    return children ? <>{children}</> : <Outlet />
  
 }
 
