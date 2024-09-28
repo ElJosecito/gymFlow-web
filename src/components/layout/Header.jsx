@@ -83,7 +83,7 @@ function Header() {
                             <div className='flex gap-4 items-center'>
                                 <div className='flex items-center gap-4'>
                                     <Link to='/profile'>
-                                        <img src='https://randomuser.me/api/portraits/women/88.jpg' alt="user" className='w-10 h-10 rounded-full' />
+                                        <img src={`http://localhost:3000${user.image}`} alt="user" className='w-10 h-10 rounded-full' />
                                     </Link>
                                     <p className={`text-lg font-semibold capitalize ${scroll ? 'text-black' : `${path !== '/' ? "text-black" : "text-back_white"}`}`}>{`${user.firstName} ${user.lastName}`}</p>
                                 </div>
@@ -130,12 +130,38 @@ function Header() {
                         <motion.li whileHover={{ scale: 1.2 }} className='text-sm' onClick={handleMenu}>
                             <a href='#contact'>Contact</a>
                         </motion.li>
-                        <motion.button
-                            whileHover={{ scale: 1.1 }}
-                            whileTap={{ scale: 0.9 }}
-                            className='bg-primary text-white px-8 py-4 text-sm rounded-xl font-semibold'>
-                            Book Now
-                        </motion.button>
+                        {
+                            isLogged ? (
+                                // user logged profile
+                                <div className='flex gap-4 items-center'>
+                                    <div className='flex items-center gap-4'>
+                                        <Link to='/profile'>
+                                            <img src={user.image} alt="user" className='w-10 h-10 rounded-full' />
+                                        </Link>
+                                        <p className={`text-lg font-semibold capitalize ${scroll ? 'text-black' : `${path !== '/' ? "text-black" : "text-back_white"}`}`}>{`${user.firstName} ${user.lastName}`}</p>
+                                    </div>
+                                </div>
+                            ) : (
+                                <div className='flex gap-4'>
+                                    <Link to='/login'>
+                                        <motion.button
+                                            whileHover={{ scale: 1.1 }}
+                                            whileTap={{ scale: 0.9 }}
+                                            className='bg-primary text-white px-8 h-12 text-sm rounded-xl font-semibold'>
+                                            Login
+                                        </motion.button>
+                                    </Link>
+                                    <Link to='/register'>
+                                        <motion.button
+                                            whileHover={{ scale: 1.1 }}
+                                            whileTap={{ scale: 0.9 }}
+                                            className={`outline-2 outline ${scroll ? 'outline-primary text-primary' : 'outline-white text-white'} px-8 h-12 text-md rounded-xl font-bold`}>
+                                            Register
+                                        </motion.button>
+                                    </Link>
+                                </div>
+                            )
+                        }
                     </ul>
                 </nav>
             </div>
