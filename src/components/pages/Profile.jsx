@@ -9,6 +9,13 @@ import { getUser } from "../../api/user"
 //socket 
 import io from 'socket.io-client'
 
+//tempo 
+import { format } from "@formkit/tempo"
+
+//hot toast
+import { toast, Toaster } from "react-hot-toast"
+
+
 function Profile() {
 
     // socket
@@ -32,84 +39,135 @@ function Profile() {
 
     useEffect(() => {
         const socket = io("http://localhost:3000"); // Conectar al servidor
-    
+
         // Escuchar el evento gymStatusUpdate
         socket.on("gymStatusUpdate", (data) => {
-          console.log("Actualización de capacidad del gimnasio:", data);
-          setGymStatus(data); // Actualiza el estado con los datos recibidos
+            console.log("Actualización de capacidad del gimnasio:", data);
+            setGymStatus(data); // Actualiza el estado con los datos recibidos
         });
-    
+
         // Limpiar la conexión cuando el componente se desmonte
         return () => {
-          socket.disconnect();
+            socket.disconnect();
         };
-      }, []);
+    }, []);
+
+
+    const [date, setDate] = useState("");
+    const [endDate, setEndDate] = useState("");
+
+    useEffect(() => {
+
+        setDate(format(user.createdAt, "long"))
+        setEndDate(format(user.updatedAt, "long"))
+
+
+    }, [user.createdAt, user.updatedAt])
+
+
+    //toast
+
+    useEffect(() => {
+        if (gymStatus) {
+            toast.success(gymStatus.message, {
+                duration: 4000,
+                position: "bottom-right"
+            }
+            )
+        }
+    }, [gymStatus])
+
 
 
     return (
-        <section className="w-full h-screen flex justify-center items-center ">
-            <div className="max-w-screen-sm w-full p-4 bg-white shadow-lg rounded-lg">
-                <h2 className="text-2xl font-bold text-center">Profile</h2>
-                <div className="mt-4">
-                    <div className="mb-4">
-                        <label className="block text-sm font-medium text-gray-700">First Name</label>
-                        <input
-                            type="text"
-                            value={user.firstName}
-                            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                            disabled
-                        />
-                    </div>
 
-                    <div className="mb-4">
-                        <label className="block text-sm font-medium text-gray-700">Last Name</label>
-                        <input
-                            type="text"
-                            value={user.lastName}
-                            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                            disabled
-                        />
-                    </div>
+        <>
+            <section className="w-full flex justify-center h-fit">
+                <div className="max-w-screen-2xl w-full rounded-lg h-fit">
+                    <div className="flex justify-between items-center h-screen">
+                        <div className="w-1/2">
+                            <h1 className="text-5xl font-bold mb-10">Profile</h1>
+                            <div className="">
+                                {user ? (
+                                    <div>
+                                        <div className="flex justify-around items-center outline outline-4 rounded-xl outline-primary w-fit px-10 py-5">
+                                            <img src={`http://localhost:3000${user.image}`} alt="avatar" className="w-24 h-24 rounded-full bg-primary" />
+                                            <div className="ml-8">
+                                                <h2 className="text-2xl font-bold capitalize">{`${user.firstName} ${user.lastName}`}</h2>
+                                                <p className="text-sm font-medium text-[#00000056]">{user.email}</p>
+                                            </div>
+                                        </div>
 
-                    <div className="mb-4">
-                        <label className="block text-sm font-medium text-gray-700">Email</label>
-                        <input
-                            type="email"
-                            value={user.email}
-                            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                            disabled
-                        />
-                    </div>
+                                        <h2 className="text-2xl font-bold mt-10">Información del usuario:</h2>
 
-                    <div className="mb-4">
-                        <label className="block text-sm font-medium text-gray-700">Phone Number</label>
-                        <input
-                            type="text"
-                            value={user.phoneNumber}
-                            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                            disabled
-                        />
-                    </div>
+                                        <div className="self-center mt-8">
+                                            <h2 className="text-xl font-bold capitalize">Number:</h2>
+                                            <p className="text-sm font-medium text-[#00000056]">{user.phoneNumber}</p>
+                                        </div>
 
-                    <div className="">
-                        <h1>Estado del gimnasio:</h1>
-                        {gymStatus ? (
-                            <div>
-                                <p>{gymStatus.message}</p>
-                                <p>ID del usuario: {gymStatus.userId}</p>
-                                <p>Capacidad actual: {gymStatus.currentCapacity}</p>
+                                        <div className="self-center mt-4">
+                                            <h2 className="text-xl font-bold capitalize">Email:</h2>
+                                            <p className="text-sm font-medium text-[#00000056]">{user.email}</p>
+                                        </div>
+
+                                        <div className="self-center mt-10">
+                                            {/* memberShip card*/}
+                                            <h2 className="text-2xl font-bold capitalize">Membership:</h2>
+                                            <div className={`flex gap-4 px-10 py-5 outline outline-4 rounded-xl w-fit my-8 ${user.memberShip === "basic" ? " outline-primary shadow-sm shadow-primary" : user.memberShip === "gold" ? "outline-yellow-500 shadow-md shadow-yellow-500" : "outline-fuchsia-400 shadow-md shadow-fuchsia-400"}`}>
+                                                <div className="flex flex-col">
+                                                    <p className="text-sm font-medium text-[#00000056]">Start Date</p>
+                                                    <p className="text-lg font-semibold">{date}</p>
+                                                </div>
+
+                                                <div className="flex flex-col ml-4">
+                                                    <p className="text-sm font-medium text-[#00000056]">End Date</p>
+                                                    <p className="text-lg font-semibold">{endDate}</p>
+                                                </div>
+
+                                                {/* memberShip type */}
+                                                <div className="flex flex-col ml-4">
+                                                    <p className="text-sm font-medium text-[#00000056]">Type</p>
+                                                    <p className="text-lg font-semibold capitalize">{user.memberShip}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {
+                                            user.active ? (
+                                                <p className="text-green-500 font-bold text-xl">Usuario activo</p>
+                                            ) : (
+                                                <p className="text-red-500 font-bold text-xl">Usuario inactivo</p>
+                                            )
+                                        }
+
+                                        <button onClick={logout} className="bg-red-500 text-white px-4 py-2 rounded-md mt-8">Cerrar sesión</button>
+                                    </div>
+                                ) : (
+                                    <p>Cargando usuario...</p>
+                                )}
                             </div>
-                        ) : (
-                            <p>Cargando estado...</p>
-                        )}
+                        </div>
+
+                        <div className="w-1/2 h-full">
+                            {gymStatus ? (
+                                <div className="flex justify-center items-center h-full">
+                                    <p className="text-9xl font-black">{gymStatus.currentCapacity}</p>
+                                </div>
+                            ) : (
+                                <div className="flex justify-center items-center h-full">
+                                    <p className="text-5xl font-bold">Cargando...</p>
+                                </div>
+                            )}
+                        </div>
+
                     </div>
 
-                    <div className="flex justify-center">
-                        <button onClick={logout} className="bg-red-500 text-white px-4 py-2 rounded-md">Logout</button>
-                    </div>
                 </div>
-            </div>
-        </section>
+            </section>
+
+            <Toaster />
+
+        </>
+
     )
 }
 
