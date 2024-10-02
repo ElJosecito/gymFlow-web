@@ -4,7 +4,7 @@ import { useEffect, useState } from "react"
 import { useAuthStore } from "../../store/auth"
 
 // api
-import { getUser } from "../../api/user"
+import { getUser, deleteImage, uploadImage } from "../../api/user"
 
 //socket 
 import io from 'socket.io-client'
@@ -77,7 +77,26 @@ function Profile() {
         }
     }, [gymStatus])
 
+    const [image, setImage] = useState('')
 
+    const handleImageChange = async (e) => {
+        console.log(e.target.files[0])
+        
+        setImage(e.target.files[0])
+    };
+
+    const handleImageUpload = async () => {
+        const formData = new FormData()
+        formData.append('profileImage', image)
+
+        try {
+            const response = await uploadImage( userId, formData)
+            console.log(response)
+            window.location.reload()
+        } catch (error) {
+            console.error(error)
+        }
+    }
 
     return (
 
@@ -139,7 +158,15 @@ function Profile() {
                                             )
                                         }
 
+                                        <div className="mt-8">
+                                            <h2 className="text-2xl font-bold">Actualizar imagen:</h2>
+                                            <input type="file" onChange={handleImageChange} />
+
+                                            <button onClick={handleImageUpload} className="bg-primary text-white px-4 py-2 rounded-md mt-8">Actualizar imagen</button>
+                                        </div>
                                         <button onClick={logout} className="bg-red-500 text-white px-4 py-2 rounded-md mt-8">Cerrar sesión</button>
+
+
                                     </div>
                                 ) : (
                                     <p>Cargando usuario...</p>

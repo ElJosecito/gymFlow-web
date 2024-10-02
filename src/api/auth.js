@@ -10,9 +10,9 @@ export const login = async (email, password) => {
 };
 
 
-export const register = async (email, password, firstName, lastName, number) => {
+export const register = async (email, password, firstName, lastName, phoneNumber) => {
     try {
-        const response = await axios.post('/auth/register', { email, password, firstName, lastName, number });
+        const response = await axios.post('/auth/register', { email, password, firstName, lastName, phoneNumber });
         return response.data;
     } catch (error) {
         return error.response.data;

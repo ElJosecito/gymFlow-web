@@ -85,7 +85,7 @@ function Header() {
                                     <Link to='/profile'>
                                         <img src={`http://localhost:3000${user.image}`} alt="user" className='w-10 h-10 rounded-full' />
                                     </Link>
-                                    <p className={`text-lg font-semibold capitalize ${scroll ? 'text-black' : `${path !== '/' ? "text-black" : "text-back_white"}`}`}>{`${user.firstName} ${user.lastName}`}</p>
+                                    <p className={`text-lg font-semibold capitalize ${scroll ? 'text-black' : `${path !== '/' ? "text-black" : "text-back_white"}`}`}>{`${user.firstName}`}</p>
                                 </div>
                             </div>
                         ) : (

@@ -8,3 +8,38 @@ export const getUser = async (id) => {
         console.error(error);
     }
 };
+
+
+export const updateUser = async (id, data) => {
+    try {
+        const response = await axios.put(`users/${id}`, data);
+        return response.data;
+    } catch (error) {
+        console.error(error);
+    }
+};
+
+// delete image
+export const deleteImage = async (id) => {
+    try {
+        const response = await axios.put(`users/image/delete/${id}`);
+        return response.data;
+    } catch (error) {
+        console.error(error);
+    }
+};
+
+//upload image
+export const uploadImage = async (id, data) => {
+    try {
+        const response = await axios.put(`users/image/${id}`, data, {
+            headers: {
+                'Content-Type': 'multipart/form-data',
+            },
+        });
+        return response.data;
+    } catch (error) {
+        console.error(error);
+    }
+};
+
