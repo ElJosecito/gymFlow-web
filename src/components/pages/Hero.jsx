@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { PlayCircle, CircleCheck, Ban } from 'lucide-react'
+import { PlayCircle, CircleCheck, Ban, XCircle } from 'lucide-react'
 
 import muscle from '../../assets/images/muscle.png'
 import rectangle1 from '../../assets/images/Rectangle1.png'
@@ -12,7 +12,12 @@ import trainer2 from '../../assets/images/trainer2.png'
 import trainer3 from '../../assets/images/trainer3.png'
 
 
+import Modal from 'react-modal';
+import { useState } from 'react'
+
 function Hero() {
+
+    const [modalIsOpen, setModalIsOpen] = useState(false);
 
     return (
         <>
@@ -222,31 +227,31 @@ function Hero() {
 
                                 <ul className='mt-8'>
                                     <li className='flex items-center gap-2 text-[#00000056] font-semibold my-2'>
-                                        <CircleCheck size={20} color='green'  strokeWidth={2.5} absoluteStrokeWidth/>
+                                        <CircleCheck size={20} color='green' strokeWidth={2.5} absoluteStrokeWidth />
                                         <p>Free Training</p>
                                     </li>
                                     <li className='flex items-center gap-2 text-[#00000056] font-semibold my-2'>
-                                        <CircleCheck size={20} color='green'  strokeWidth={2.5} absoluteStrokeWidth/>
+                                        <CircleCheck size={20} color='green' strokeWidth={2.5} absoluteStrokeWidth />
                                         <p>Free Training</p>
                                     </li>
                                     <li className='flex items-center gap-2 text-[#00000056] font-semibold my-2'>
-                                        <CircleCheck size={20} color='green'  strokeWidth={2.5} absoluteStrokeWidth/>
+                                        <CircleCheck size={20} color='green' strokeWidth={2.5} absoluteStrokeWidth />
                                         <p>Free Training</p>
                                     </li>
                                     <li className='flex items-center gap-2 text-[#00000056] font-semibold my-2'>
-                                        <Ban size={20} color='red'  strokeWidth={2.5} absoluteStrokeWidth/>
+                                        <Ban size={20} color='red' strokeWidth={2.5} absoluteStrokeWidth />
                                         <p>Free Training</p>
                                     </li>
                                     <li className='flex items-center gap-2 text-[#00000056] font-semibold my-2'>
-                                        <Ban size={20} color='red'  strokeWidth={2.5} absoluteStrokeWidth />
+                                        <Ban size={20} color='red' strokeWidth={2.5} absoluteStrokeWidth />
                                         <p>Free Training</p>
                                     </li>
                                 </ul>
 
-                                <motion.button 
-                                whileHover={{ scale: 1.05 }}
-                                whileTap={{ scale: 0.9 }}
-                                className='bg-primary text-white rounded-xl p-4 font-semibold mt-8'>Book Now</motion.button>
+                                <motion.button
+                                    whileHover={{ scale: 1.05 }}
+                                    whileTap={{ scale: 0.9 }}
+                                    className='bg-primary text-white rounded-xl p-4 font-semibold mt-8'>Book Now</motion.button>
 
                             </div>
                             {/*  */}
@@ -263,31 +268,31 @@ function Hero() {
 
                                 <ul className='mt-8'>
                                     <li className='flex items-center gap-2 text-[#ffffff56] font-semibold my-2'>
-                                        <CircleCheck size={20} color='green'  strokeWidth={2.5} absoluteStrokeWidth/>
+                                        <CircleCheck size={20} color='green' strokeWidth={2.5} absoluteStrokeWidth />
                                         <p>Free Training</p>
                                     </li>
                                     <li className='flex items-center gap-2 text-[#ffffff56] font-semibold my-2'>
-                                        <CircleCheck size={20} color='green'  strokeWidth={2.5} absoluteStrokeWidth/>
+                                        <CircleCheck size={20} color='green' strokeWidth={2.5} absoluteStrokeWidth />
                                         <p>Free Training</p>
                                     </li>
                                     <li className='flex items-center gap-2 text-[#ffffff56] font-semibold my-2'>
-                                        <CircleCheck size={20} color='green'  strokeWidth={2.5} absoluteStrokeWidth/>
+                                        <CircleCheck size={20} color='green' strokeWidth={2.5} absoluteStrokeWidth />
                                         <p>Free Training</p>
                                     </li>
                                     <li className='flex items-center gap-2 text-[#ffffff56] font-semibold my-2'>
-                                        <Ban size={20} color='red'  strokeWidth={2.5} absoluteStrokeWidth/>
+                                        <Ban size={20} color='red' strokeWidth={2.5} absoluteStrokeWidth />
                                         <p>Free Training</p>
                                     </li>
                                     <li className='flex items-center gap-2 text-[#ffffff56] font-semibold my-2'>
-                                        <Ban size={20} color='red'  strokeWidth={2.5} absoluteStrokeWidth />
+                                        <Ban size={20} color='red' strokeWidth={2.5} absoluteStrokeWidth />
                                         <p>Free Training</p>
                                     </li>
                                 </ul>
 
-                                <motion.button 
-                                whileHover={{ scale: 1.05 }}
-                                whileTap={{ scale: 0.9 }}
-                                className='bg-white text-primary rounded-xl p-4 font-semibold mt-8'>Book Now</motion.button>
+                                <motion.button
+                                    whileHover={{ scale: 1.05 }}
+                                    whileTap={{ scale: 0.9 }}
+                                    className='bg-white text-primary rounded-xl p-4 font-semibold mt-8'>Book Now</motion.button>
                             </div>
 
                             {/*  */}
@@ -304,37 +309,154 @@ function Hero() {
 
                                 <ul className='mt-8'>
                                     <li className='flex items-center gap-2 text-[#00000056] font-semibold my-2'>
-                                        <CircleCheck size={20} color='green'  strokeWidth={2.5} absoluteStrokeWidth/>
+                                        <CircleCheck size={20} color='green' strokeWidth={2.5} absoluteStrokeWidth />
                                         <p>Free Training</p>
                                     </li>
                                     <li className='flex items-center gap-2 text-[#00000056] font-semibold my-2'>
-                                        <CircleCheck size={20} color='green'  strokeWidth={2.5} absoluteStrokeWidth/>
+                                        <CircleCheck size={20} color='green' strokeWidth={2.5} absoluteStrokeWidth />
                                         <p>Free Training</p>
                                     </li>
                                     <li className='flex items-center gap-2 text-[#00000056] font-semibold my-2'>
-                                        <CircleCheck size={20} color='green'  strokeWidth={2.5} absoluteStrokeWidth/>
+                                        <CircleCheck size={20} color='green' strokeWidth={2.5} absoluteStrokeWidth />
                                         <p>Free Training</p>
                                     </li>
                                     <li className='flex items-center gap-2 text-[#00000056] font-semibold my-2'>
-                                        <Ban size={20} color='red'  strokeWidth={2.5} absoluteStrokeWidth/>
+                                        <Ban size={20} color='red' strokeWidth={2.5} absoluteStrokeWidth />
                                         <p>Free Training</p>
                                     </li>
                                     <li className='flex items-center gap-2 text-[#00000056] font-semibold my-2'>
-                                        <Ban size={20} color='red'  strokeWidth={2.5} absoluteStrokeWidth />
+                                        <Ban size={20} color='red' strokeWidth={2.5} absoluteStrokeWidth />
                                         <p>Free Training</p>
                                     </li>
                                 </ul>
 
-                                <motion.button 
-                                whileHover={{ scale: 1.05 }}
-                                whileTap={{ scale: 0.9 }}
-                                className='bg-primary text-white rounded-xl p-4 font-semibold mt-8'>Book Now</motion.button>
+                                <motion.button
+                                    whileHover={{ scale: 1.05 }}
+                                    whileTap={{ scale: 0.9 }}
+                                    className='bg-primary text-white rounded-xl p-4 font-semibold mt-8' onClick={() => { setModalIsOpen(true) }}>Book Now</motion.button>
                             </div>
 
                         </div>
                     </div>
                 </div>
             </section>
+
+            <Modal overlayClassName="Overlay" className="bg-white absolute top-1/2 left-1/2  transform -translate-x-1/2 -translate-y-1/2 max-w-screen-lg w-full rounded-xl p-5" isOpen={modalIsOpen} onRequestClose={() => setModalIsOpen(false)}>
+
+                <div className='flex justify-end items-center'>
+                    <button onClick={() => setModalIsOpen(false)}>
+                        <XCircle size={30} color='red' strokeWidth={2.5} absoluteStrokeWidth />
+                    </button>
+                </div>
+
+                {/* payment section */}
+                <section className="flex justify-start w-full">
+                    < form className="w-1/2 px-10 ">
+                        <div className='flex flex-col'>
+                            <label htmlFor="" className='font-bold mb-2 text-[#8b8b8b]'>Full Name</label>
+                            <input type="text" className="outline outline-1 outline-[#c0c0c0] px-3 rounded-lg  py-2" />
+                        </div>
+                        {/* card Number */}
+                        <div className='flex flex-col mt-4'>
+                            <label htmlFor="" className='font-bold mb-2 text-[#8b8b8b]'>Card Number</label>
+                            <input type="text" className="outline outline-1 outline-[#c0c0c0] px-3 rounded-lg  py-2" />
+                        </div>
+
+                        <div className='flex gap-4 mt-4  justify-between'>
+                            <div className='flex flex-col'>
+                                <label htmlFor="" className='font-bold mb-2 text-[#8b8b8b]'>Expiry Date</label>
+                                <input type="text" className="outline outline-1 outline-[#c0c0c0] px-3 rounded-lg w-52 py-2" />
+                            </div>
+                            <div className='flex flex-col'>
+                                <label htmlFor="" className='font-bold mb-2 text-[#8b8b8b]'>CVV</label>
+                                <input type="text" className="outline outline-1 outline-[#c0c0c0] px-3 rounded-lg w-36 py-2" />
+                            </div>
+                        </div>
+
+                        {/* payment description */}
+
+                        <div className='flex flex-col mt-7 px-2'>
+                            <div className='flex justify-between items-center'>
+                                <h1 className='font-semibold'>SubTotal</h1>
+                                <p className='text-[#8b8b8b]'>$20</p>
+                            </div>
+
+                            <div className='flex justify-between items-center mt-3'>
+                                <h1 className='font-semibold'>Tax</h1>
+                                <p className='text-[#8b8b8b]'>$2</p>
+                            </div>
+
+                            {/* divider */}
+                            <div className='border-b-[0.5px] border-[#8b8b8b] my-3 '></div>
+
+                            <div className='flex justify-between items-center'>
+                                <h1 className='font-semibold'>Total</h1>
+                                <p className='text-[#8b8b8b]'>$22</p>
+                            </div>
+                        </div>
+
+                        <motion.button
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.9 }}
+                            className='bg-primary text-white rounded-xl p-4 font-semibold mt-8 w-full'>Pay Now</motion.button>
+                    </form>
+                    <div className="w-1/2 flex justify-center items-center">
+                        {/* plan description */}
+
+                        <div className='flex flex-col outline outline-[#d6d6d6] rounded-2xl overflow-hidden w-[400px] h-[500px] px-5 py-8'>
+                            <h1 className='font-bold text-base'>Expert Plan</h1>
+                            <div className='flex items-end mt-4'>
+                                <p className='font-bold text-6xl leading-none '>$20</p>
+                                <p className='font-bold text-sm pb-3'> /Per Month</p>
+                            </div>
+                            <p className='text-xs text-[#00000056] font-medium mt-3'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut </p>
+
+                            {/* beneficts list */}
+
+                            <ul className='mt-8'>
+                                <li className='flex items-center gap-2 text-[#00000056] font-semibold my-2'>
+                                    <CircleCheck size={20} color='green' strokeWidth={2.5} absoluteStrokeWidth />
+                                    <p>Free Training</p>
+                                </li>
+                                <li className='flex items-center gap-2 text-[#00000056] font-semibold my-2'>
+                                    <CircleCheck size={20} color='green' strokeWidth={2.5} absoluteStrokeWidth />
+                                    <p>Free Training</p>
+                                </li>
+                                <li className='flex items-center gap-2 text-[#00000056] font-semibold my-2'>
+                                    <CircleCheck size={20} color='green' strokeWidth={2.5} absoluteStrokeWidth />
+                                    <p>Free Training</p>
+                                </li>
+                                <li className='flex items-center gap-2 text-[#00000056] font-semibold my-2'>
+                                    <Ban size={20} color='red' strokeWidth={2.5} absoluteStrokeWidth />
+                                    <p>Free Training</p>
+                                </li>
+                                <li className='flex items-center gap-2 text-[#00000056] font-semibold my-2'>
+                                    <Ban size={20} color='red' strokeWidth={2.5} absoluteStrokeWidth />
+                                    <p>Free Training</p>
+                                </li>
+                            </ul>
+                            {/* change plans */}
+                            <div className='flex justify-center items-center mt-8'>
+                                <p className='text-[#00000056]'>Change Plan</p>
+                            </div>
+                            <div className='flex justify-between mt-5'>
+                                <div className='hover:border-b-4 cursor-pointer duration-200 border-blue-500'>
+                                    <p className='font-semibold'>Beginner Plan</p>
+                                </div>
+
+                                <div className='hover:border-b-4 cursor-pointer duration-200 border-blue-500'>
+                                    <p className='font-semibold'>Premium Plan</p>
+                                </div>
+
+                                <div className='hover:border-b-4 cursor-pointer duration-200 border-blue-500'>
+                                    <p className='font-semibold'>Expert Plan</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </section>
+            </Modal>
         </>
     )
 }

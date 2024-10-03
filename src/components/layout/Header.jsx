@@ -83,7 +83,7 @@ function Header() {
                             <div className='flex gap-4 items-center'>
                                 <div className='flex items-center gap-4'>
                                     <Link to='/profile'>
-                                        <img src={`http://localhost:3000${user.image}`} alt="user" className='w-10 h-10 rounded-full' />
+                                        <img src={`${user.image}`} alt="user" className='w-10 h-10 rounded-full' />
                                     </Link>
                                     <p className={`text-lg font-semibold capitalize ${scroll ? 'text-black' : `${path !== '/' ? "text-black" : "text-back_white"}`}`}>{`${user.firstName}`}</p>
                                 </div>
