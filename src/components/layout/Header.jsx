@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 
 // icons
-import { Menu, X } from 'lucide-react'
+import { Menu, X, User } from 'lucide-react'
 
 //state management
 import { useAuthStore } from '../../store/auth'
@@ -83,7 +83,15 @@ function Header() {
                             <div className='flex gap-4 items-center'>
                                 <div className='flex items-center gap-4'>
                                     <Link to='/profile'>
-                                        <img src={`${user.image}`} alt="user" className='w-10 h-10 rounded-full' />
+                                        {
+                                            user.image ? (
+                                                <img src={`${user.image}`} alt="user" className='w-10 h-10 rounded-full' />
+                                            ) : (
+                                                <div className='w-10 h-10 bg-green-700 rounded-full flex items-center justify-center'>
+                                                    <User color="white"/>
+                                                </div>
+                                            )
+                                        }
                                     </Link>
                                     <p className={`text-lg font-semibold capitalize ${scroll ? 'text-black' : `${path !== '/' ? "text-black" : "text-back_white"}`}`}>{`${user.firstName}`}</p>
                                 </div>
@@ -136,7 +144,15 @@ function Header() {
                                 <div className='flex gap-4 items-center'>
                                     <div className='flex items-center gap-4'>
                                         <Link to='/profile'>
-                                            <img src={user.image} alt="user" className='w-10 h-10 rounded-full' />
+                                            {
+                                                user.image ? (
+                                                    <img src={`${user.image}`} alt="user" className='w-10 h-10 rounded-full' />
+                                                ) : (
+                                                    <div className='w-10 h-10 bg-green-700 rounded-full flex items-center justify-center'>
+                                                        <User />
+                                                    </div>
+                                                )
+                                            }
                                         </Link>
                                         <p className={`text-lg font-semibold capitalize ${scroll ? 'text-black' : `${path !== '/' ? "text-black" : "text-back_white"}`}`}>{`${user.firstName} ${user.lastName}`}</p>
                                     </div>

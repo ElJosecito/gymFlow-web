@@ -13,11 +13,28 @@ import trainer3 from '../../assets/images/trainer3.png'
 
 
 import Modal from 'react-modal';
-import { useState } from 'react'
+import { useState } from 'react';
+
+import { updateUser } from '../../api/user'
+
+import { useAuthStore } from '../../store/auth'
+
+import { useNavigate } from 'react-router-dom'
 
 function Hero() {
 
+    const [plan, setPlan] = useState({})
+
     const [modalIsOpen, setModalIsOpen] = useState(false);
+
+
+    const { userId } = useAuthStore()
+
+    const navigate = useNavigate()
+
+    // modal
+    Modal.setAppElement('#root');
+
 
     return (
         <>
@@ -251,7 +268,12 @@ function Hero() {
                                 <motion.button
                                     whileHover={{ scale: 1.05 }}
                                     whileTap={{ scale: 0.9 }}
-                                    className='bg-primary text-white rounded-xl p-4 font-semibold mt-8'>Book Now</motion.button>
+                                    className='bg-primary text-white rounded-xl p-4 font-semibold mt-8'
+                                    onClick={() => {
+                                        setModalIsOpen(true)
+                                        setPlan({ name: 'basic', price: 5 })
+                                    }}
+                                >Book Now</motion.button>
 
                             </div>
                             {/*  */}
@@ -292,7 +314,12 @@ function Hero() {
                                 <motion.button
                                     whileHover={{ scale: 1.05 }}
                                     whileTap={{ scale: 0.9 }}
-                                    className='bg-white text-primary rounded-xl p-4 font-semibold mt-8'>Book Now</motion.button>
+                                    className='bg-white text-primary rounded-xl p-4 font-semibold mt-8'
+                                    onClick={() => {
+                                        setModalIsOpen(true)
+                                        setPlan({ name: 'gold', price: 15 })
+                                    }}
+                                >Book Now</motion.button>
                             </div>
 
                             {/*  */}
@@ -333,7 +360,10 @@ function Hero() {
                                 <motion.button
                                     whileHover={{ scale: 1.05 }}
                                     whileTap={{ scale: 0.9 }}
-                                    className='bg-primary text-white rounded-xl p-4 font-semibold mt-8' onClick={() => { setModalIsOpen(true) }}>Book Now</motion.button>
+                                    className='bg-primary text-white rounded-xl p-4 font-semibold mt-8' onClick={() => {
+                                        setModalIsOpen(true)
+                                        setPlan({ name: 'platinum', price: 20 })
+                                    }}>Book Now</motion.button>
                             </div>
 
                         </div>
@@ -378,35 +408,42 @@ function Hero() {
                         <div className='flex flex-col mt-7 px-2'>
                             <div className='flex justify-between items-center'>
                                 <h1 className='font-semibold'>SubTotal</h1>
-                                <p className='text-[#8b8b8b]'>$20</p>
+                                <p className='text-[#8b8b8b]'>{`$${plan.price}`}</p>
                             </div>
 
                             <div className='flex justify-between items-center mt-3'>
                                 <h1 className='font-semibold'>Tax</h1>
-                                <p className='text-[#8b8b8b]'>$2</p>
+                                <p className='text-[#8b8b8b]'>{`$${plan.price * 0.1}`}</p>
                             </div>
 
                             {/* divider */}
-                            <div className='border-b-[0.5px] border-[#8b8b8b] my-3 '></div>
+                            <div className='border-b-[0.5px] border-[#8b8b8b] my-3'></div>
 
                             <div className='flex justify-between items-center'>
                                 <h1 className='font-semibold'>Total</h1>
-                                <p className='text-[#8b8b8b]'>$22</p>
+                                <p className='text-[#8b8b8b]'>{`${plan.price + (plan.price * 0.1)
+                                    }`}</p>
                             </div>
                         </div>
 
                         <motion.button
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.9 }}
-                            className='bg-primary text-white rounded-xl p-4 font-semibold mt-8 w-full'>Pay Now</motion.button>
+                            className='bg-primary text-white rounded-xl p-4 font-semibold mt-8 w-full'
+                            onClick={() => {
+                                updateUser(userId, { memberShip: plan.name, active: true })
+                                setModalIsOpen(false)
+                                navigate('/profile')
+                            }}
+                        >Pay Now</motion.button>
                     </form>
                     <div className="w-1/2 flex justify-center items-center">
                         {/* plan description */}
 
                         <div className='flex flex-col outline outline-[#d6d6d6] rounded-2xl overflow-hidden w-[400px] h-[500px] px-5 py-8'>
-                            <h1 className='font-bold text-base'>Expert Plan</h1>
+                            <h1 className='font-bold text-base capitalize'>{plan.name}</h1>
                             <div className='flex items-end mt-4'>
-                                <p className='font-bold text-6xl leading-none '>$20</p>
+                                <p className='font-bold text-6xl leading-none '>{`$${plan.price}`}</p>
                                 <p className='font-bold text-sm pb-3'> /Per Month</p>
                             </div>
                             <p className='text-xs text-[#00000056] font-medium mt-3'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut </p>
@@ -440,16 +477,22 @@ function Hero() {
                                 <p className='text-[#00000056]'>Change Plan</p>
                             </div>
                             <div className='flex justify-between mt-5'>
-                                <div className='hover:border-b-4 cursor-pointer duration-200 border-blue-500'>
-                                    <p className='font-semibold'>Beginner Plan</p>
+                                <div className='hover:border-b-4 cursor-pointer duration-200 border-blue-500'
+                                    onClick={() => setPlan({ name: 'basic', price: 5 })}
+                                >
+                                    <p className='font-semibold'>Basic</p>
                                 </div>
 
-                                <div className='hover:border-b-4 cursor-pointer duration-200 border-blue-500'>
-                                    <p className='font-semibold'>Premium Plan</p>
+                                <div className='hover:border-b-4 cursor-pointer duration-200 border-blue-500' onClick={
+                                    () => setPlan({ name: 'gold', price: 15 })
+                                }>
+                                    <p className='font-semibold'>Gold</p>
                                 </div>
 
-                                <div className='hover:border-b-4 cursor-pointer duration-200 border-blue-500'>
-                                    <p className='font-semibold'>Expert Plan</p>
+                                <div className='hover:border-b-4 cursor-pointer duration-200 border-blue-500' onClick={
+                                    () => setPlan({ name: 'platinum', price: 20 })
+                                }>
+                                    <p className='font-semibold'>Platinum</p>
                                 </div>
                             </div>
                         </div>
