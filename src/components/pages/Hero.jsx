@@ -26,9 +26,8 @@ function Hero() {
     const [plan, setPlan] = useState({})
 
     const [modalIsOpen, setModalIsOpen] = useState(false);
-
-
-    const { userId } = useAuthStore()
+    const [payment, setPayment] = useState(false)
+    const { userId, isAuth } = useAuthStore()
 
     const navigate = useNavigate()
 
@@ -381,62 +380,85 @@ function Hero() {
 
                 {/* payment section */}
                 <section className="flex justify-start w-full">
-                    < form className="w-1/2 px-10 ">
-                        <div className='flex flex-col'>
-                            <label htmlFor="" className='font-bold mb-2 text-[#8b8b8b]'>Full Name</label>
-                            <input type="text" className="outline outline-1 outline-[#c0c0c0] px-3 rounded-lg  py-2" />
-                        </div>
-                        {/* card Number */}
-                        <div className='flex flex-col mt-4'>
-                            <label htmlFor="" className='font-bold mb-2 text-[#8b8b8b]'>Card Number</label>
-                            <input type="text" className="outline outline-1 outline-[#c0c0c0] px-3 rounded-lg  py-2" />
-                        </div>
+                    <div className="w-1/2 flex justify-center items-center">
+                        {
+                            !isAuth ? (
+                                <motion.button
+                                    whileHover={{ scale: 1.1 }}
+                                    whileTap={{ scale: 0.9 }}
+                                    className='bg-primary text-white rounded-xl p-4 font-semibold '>login
+                                </motion.button>
+                            ) : (
+                                !payment ? (
+                                    < form className="w-full px-10 ">
+                                        <div className='flex flex-col'>
+                                            <label htmlFor="" className='font-bold mb-2 text-[#8b8b8b]'>Full Name</label>
+                                            <input type="text" className="outline outline-1 outline-[#c0c0c0] px-3 rounded-lg  py-2" />
+                                        </div>
+                                        {/* card Number */}
+                                        <div className='flex flex-col mt-4'>
+                                            <label htmlFor="" className='font-bold mb-2 text-[#8b8b8b]'>Card Number</label>
+                                            <input type="text" className="outline outline-1 outline-[#c0c0c0] px-3 rounded-lg  py-2" />
+                                        </div>
 
-                        <div className='flex gap-4 mt-4  justify-between'>
-                            <div className='flex flex-col'>
-                                <label htmlFor="" className='font-bold mb-2 text-[#8b8b8b]'>Expiry Date</label>
-                                <input type="text" className="outline outline-1 outline-[#c0c0c0] px-3 rounded-lg w-52 py-2" />
-                            </div>
-                            <div className='flex flex-col'>
-                                <label htmlFor="" className='font-bold mb-2 text-[#8b8b8b]'>CVV</label>
-                                <input type="text" className="outline outline-1 outline-[#c0c0c0] px-3 rounded-lg w-36 py-2" />
-                            </div>
-                        </div>
+                                        <div className='flex gap-4 mt-4  justify-between'>
+                                            <div className='flex flex-col'>
+                                                <label htmlFor="" className='font-bold mb-2 text-[#8b8b8b]'>Expiry Date</label>
+                                                <input type="text" className="outline outline-1 outline-[#c0c0c0] px-3 rounded-lg w-52 py-2" />
+                                            </div>
+                                            <div className='flex flex-col'>
+                                                <label htmlFor="" className='font-bold mb-2 text-[#8b8b8b]'>CVV</label>
+                                                <input type="text" className="outline outline-1 outline-[#c0c0c0] px-3 rounded-lg w-36 py-2" />
+                                            </div>
+                                        </div>
 
-                        {/* payment description */}
+                                        {/* payment description */}
 
-                        <div className='flex flex-col mt-7 px-2'>
-                            <div className='flex justify-between items-center'>
-                                <h1 className='font-semibold'>SubTotal</h1>
-                                <p className='text-[#8b8b8b]'>{`$${plan.price}`}</p>
-                            </div>
+                                        <div className='flex flex-col mt-7 px-2'>
+                                            <div className='flex justify-between items-center'>
+                                                <h1 className='font-semibold'>SubTotal</h1>
+                                                <p className='text-[#8b8b8b]'>{`$${plan.price}`}</p>
+                                            </div>
 
-                            <div className='flex justify-between items-center mt-3'>
-                                <h1 className='font-semibold'>Tax</h1>
-                                <p className='text-[#8b8b8b]'>{`$${plan.price * 0.1}`}</p>
-                            </div>
+                                            <div className='flex justify-between items-center mt-3'>
+                                                <h1 className='font-semibold'>Tax</h1>
+                                                <p className='text-[#8b8b8b]'>{`$${plan.price * 0.1}`}</p>
+                                            </div>
 
-                            {/* divider */}
-                            <div className='border-b-[0.5px] border-[#8b8b8b] my-3'></div>
+                                            {/* divider */}
+                                            <div className='border-b-[0.5px] border-[#8b8b8b] my-3'></div>
 
-                            <div className='flex justify-between items-center'>
-                                <h1 className='font-semibold'>Total</h1>
-                                <p className='text-[#8b8b8b]'>{`${plan.price + (plan.price * 0.1)
-                                    }`}</p>
-                            </div>
-                        </div>
+                                            <div className='flex justify-between items-center'>
+                                                <h1 className='font-semibold'>Total</h1>
+                                                <p className='text-[#8b8b8b]'>{`${plan.price + (plan.price * 0.1)
+                                                    }`}</p>
+                                            </div>
+                                        </div>
 
-                        <motion.button
-                            whileHover={{ scale: 1.05 }}
-                            whileTap={{ scale: 0.9 }}
-                            className='bg-primary text-white rounded-xl p-4 font-semibold mt-8 w-full'
-                            onClick={() => {
-                                updateUser(userId, { memberShip: plan.name, active: true })
-                                setModalIsOpen(false)
-                                navigate('/profile')
-                            }}
-                        >Pay Now</motion.button>
-                    </form>
+                                        <motion.button
+                                            whileHover={{ scale: 1.05 }}
+                                            whileTap={{ scale: 0.9 }}
+                                            className='bg-primary text-white rounded-xl p-4 font-semibold mt-8 w-full'
+                                            onClick={() => {
+                                                updateUser(userId, { memberShip: plan.name, active: true })
+                                                setPayment(true)
+                                                setTimeout(() => {
+                                                    setModalIsOpen(false)
+                                                    navigate('/profile')
+                                                }, 2000)
+                                            }}
+                                        >Pay Now</motion.button>
+                                    </form>
+                                ) : (
+
+                                    <div className='flex flex-col items-center'>
+                                        <h1 className='font-bold text-2xl'>Payment Successfull</h1>
+                                        <p className='text-[#8b8b8b] mt-4'>Redirecting to profile page...</p>
+                                    </div>
+                                )
+                            )
+                        }
+                    </div>
                     <div className="w-1/2 flex justify-center items-center">
                         {/* plan description */}
 
