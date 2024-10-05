@@ -17,6 +17,12 @@ import Register from '../components/pages/Register'
 //profile
 import Profile from '../components/pages/Profile'
 
+//enter gym
+import EnterGym from '../components/pages/EnterGym'
+
+//pass handler
+import PassHandler from '../components/pages/PassHandler'
+
 //protected route
 import ProtectedRoute from '../components/layout/ProtectedRoute'
 
@@ -37,7 +43,7 @@ function Router() {
 
     return (
         <>
-            {path === '/login' || path === '/register' ? null : <Header />}
+            {path === '/login' || path === '/register' || path === '/enter-gym' || path === "/passHandler"? null : <Header />}
 
             <Routes>
                 <Route path="/" element={<Hero />} />
@@ -49,6 +55,9 @@ function Router() {
                     <Route path="/profile" element={<Profile />} />
                     <Route path="/dashboard" element={<h1>Dashboard</h1>} />
                 </Route>
+
+                <Route path="/enter-gym" element={<EnterGym />} />
+                <Route path="/passHandler" element={<PassHandler />} />
 
                 {/* page no found */}
                 <Route path="*" element={<h1>Page not found</h1>} />
