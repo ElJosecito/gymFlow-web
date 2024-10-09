@@ -24,9 +24,10 @@ function EnterGym() {
             id: gymId
         }
         const response = await enterGym(data)
-        console.log(response)
         setUser(response.user)
+        console.log(response)
         setLoading(false)
+        
     }
 
     const handleLastEntry = async () => {
@@ -34,9 +35,11 @@ function EnterGym() {
         const array = user.gymEntries
         const lastEntry = array[array.length - 1]
 
-        const response = await getEntryById(lastEntry)
+        if (user.active === true) {
+            const response = await getEntryById(lastEntry)
+            setDate(format(response.entryTime, "full"))
+        }
 
-        setDate(format(response.entryTime, "full"))
         setTimeout(() => {
             navigate('/passHandler')
         }, 6000)
@@ -88,10 +91,12 @@ function EnterGym() {
 
 
 
-                                            <div className="w-full mt-20">
-                                                <p className="text-normal font-bold mb-2 text-[#ffffff7e]">Last Entry</p>
-                                                <input type="text" disabled placeholder={date} className="w-full h-10 rounded-md p-3 px-4 outline outline-2 outline-[#ffffff7e] bg-[#ffffff7e] placeholder-green-500" />
-                                            </div>
+                                            {
+                                               user.active ? <div className="w-full mt-20">
+                                                    <p className="text-normal font-bold mb-2 text-[#ffffff7e]">Last Entry</p>
+                                                    <input type="text" disabled placeholder={date} className="w-full h-10 rounded-md p-3 px-4 outline outline-2 outline-[#ffffff7e] bg-[#ffffff7e] placeholder-green-500" />
+                                                </div> : null
+                                            }
 
                                             {/* gym memberShip */}
                                             <div className="w-full mt-4 flex justify-end">
