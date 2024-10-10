@@ -35,7 +35,7 @@ function PassHandler() {
                             whileHover={{ scale: 1.1 }}
                             whileTap={{ scale: 0.9 }}
                             onClick={() => handleExitGym()}
-                            className="bg-primary text-white px-4 py-2 rounded-md m-2 font-bold w-40">
+                            className="bg-red-500 text-white px-4 py-2 rounded-md m-2 font-bold w-40">
                             Exit Gym
                         </motion.button>
                     </div>

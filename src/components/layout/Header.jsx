@@ -12,6 +12,7 @@ import { getUser } from '../../api/user'
 
 //navigation
 import { Link, useLocation } from 'react-router-dom'
+import logo from '../../assets/images/logo.png'
 
 function Header() {
 
@@ -59,8 +60,8 @@ function Header() {
             <div className={` w-full  px-0`}>
                 <nav className={`flex justify-between items-center w-full h-20 px-8 rounded-b-md transition-all duration-500  ${scroll ? 'bg-back_white ' : 'bg-transparent'}`}>
                     <div className='text-2xl font-bold'>
-                        {/* <Image src={logo} alt="" /> */}
-                        Logo
+                        <img src={logo} alt="" className='w-14 ' /> 
+                        
                     </div>
                     <ul className='lg:flex gap-8 font-semibold text-base hidden'>
                         <motion.li whileHover={{ scale: 1.2 }} className='text-sm'>

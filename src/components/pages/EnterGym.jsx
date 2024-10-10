@@ -7,6 +7,9 @@ import { User, CheckCircle2, XCircle } from "lucide-react"
 import { format } from "@formkit/tempo"
 import { useNavigate } from "react-router-dom"
 
+
+import gif from "../../assets/images/nfc.gif"
+
 function EnterGym() {
 
     const [gymId, setGymId] = useState('')
@@ -123,7 +126,11 @@ function EnterGym() {
                                             </div>
 
                                         </div> :
+
                                         <>
+
+                                            <img src={gif} alt="nfc" className="w-96" />
+
                                             <form action="submit" className="flex justify-center items-center flex-col w-full" onSubmit={handleEnterGym}>
                                                 {/* input id */}
                                                 <input type="text" placeholder="Enter Gym ID" className="w-1/2 h-12 mt-8 px-4 rounded-lg outline-none bg-[#e7e7e7]" onChange={(e) => {

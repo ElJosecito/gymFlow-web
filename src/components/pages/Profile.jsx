@@ -150,7 +150,7 @@ function Profile() {
                                     <div className="flex flex-col mt-4">
                                         <div >
                                             <p className="text-normal font-bold mb-2 text-[#8b8b8b]">Profile Name</p>
-                                            <input type="text" disabled placeholder={`${user.firstName} ${user.lastName}`} className="w-full h-10 rounded-md p-3 px-4 outline outline-2 outline-[#e4e4e4]" />
+                                            <input type="text" disabled placeholder={`${user.firstName} ${user.lastName}`} className="w-full h-10 rounded-md p-3 px-4 outline outline-2 outline-[#e4e4e4] capitalize" />
                                         </div>
 
                                         <div className="mt-4">
