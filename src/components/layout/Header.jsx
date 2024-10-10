@@ -81,8 +81,8 @@ function Header() {
                     {
                         isLogged ? (
                             // user logged profile
-                            <div className='flex gap-4 items-center'>
-                                <div className='flex items-center gap-4'>
+                            <div className='lg:flex gap-4 items-center hidden'>
+                                <div className='flex items-center gap-4 '>
                                     <Link to='/profile'>
                                         {
                                             user.image ? (
@@ -98,7 +98,7 @@ function Header() {
                                 </div>
                             </div>
                         ) : (
-                            <div className='flex gap-4'>
+                            <div className='hidden gap-4 lg:flex'>
                                 <Link to='/login'>
                                     <motion.button
                                         whileHover={{ scale: 1.1 }}
@@ -111,7 +111,7 @@ function Header() {
                                     <motion.button
                                         whileHover={{ scale: 1.1 }}
                                         whileTap={{ scale: 0.9 }}
-                                        className={`outline-2 outline ${scroll ? 'outline-primary text-primary' : 'outline-white text-white'} px-8 h-12 text-md rounded-xl font-bold`}>
+                                        className={`outline-2 outline ${scroll ? 'outline-primary text-primary' : 'outline-primary text-primary'}  px-8 h-12 text-md rounded-xl font-bold`}>
                                         Register
                                     </motion.button>
                                 </Link>
