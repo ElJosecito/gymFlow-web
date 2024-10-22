@@ -9,12 +9,13 @@ export default {
       fontFamily: {
         'poppins': ['Poppins', 'sans-serif'],
         'roboto': ['Roboto', 'sans-serif'],
-        'bungee': 'bungee-tint-regular'
+        'bungee': 'bungee-tint-regular',
+        'ease': 'ease-bold'
       },
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
-        primary: "#C90900",
+        primary: "#FFCE5B",
         secondary: "#011632",
         darkblue: "#0C1524",
         back_white: "#f4f4f4",

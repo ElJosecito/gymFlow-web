@@ -11,10 +11,12 @@ import { useAuthStore } from '../../store/auth'
 import { getUser } from '../../api/user'
 
 //navigation
-import { Link, useLocation } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import logo from '../../assets/images/logo.png'
 
 function Header() {
+
+    const navigate = useNavigate()
 
     const [scroll, setScroll] = useState(false)
     const isLogged = useAuthStore(state => state.isAuth)
@@ -55,13 +57,19 @@ function Header() {
     //path
     const path = useLocation().pathname
 
+    //redirect function with scroll to top
+    const redirect = (route) => {
+        window.scrollTo(0, 0)
+        navigate(route)
+    }
+
     return (
         <header className='w-full flex justify-center fixed z-[10000]  '>
             <div className={` w-full  px-0`}>
-                <nav className={`flex justify-between items-center w-full h-20 px-8 rounded-b-md transition-all duration-500  ${scroll ? 'bg-back_white ' : 'bg-transparent'}`}>
+                <nav className={`flex justify-between items-center w-full h-20 px-8 rounded-b-md transition-all duration-500  ${scroll ? 'bg-white shadow-xl' : 'bg-white'}`}>
                     <div className='text-2xl font-bold'>
-                        <img src={logo} alt="" className='w-14 ' /> 
-                        
+                        <img src={logo} alt="" className='w-14 ' />
+
                     </div>
                     <ul className='lg:flex gap-8 font-semibold text-base hidden'>
                         <motion.li whileHover={{ scale: 1.2 }} className='text-sm'>
@@ -83,38 +91,37 @@ function Header() {
                             // user logged profile
                             <div className='lg:flex gap-4 items-center hidden'>
                                 <div className='flex items-center gap-4 '>
-                                    <Link to='/profile'>
+                                    <div className='flex items-center gap-4' onClick={() => redirect('/profile')}>
                                         {
                                             user.image ? (
                                                 <img src={`${user.image}`} alt="user" className='w-10 h-10 rounded-full' />
                                             ) : (
                                                 <div className='w-10 h-10 bg-green-700 rounded-full flex items-center justify-center'>
-                                                    <User color="white"/>
+                                                    <User color="white" />
                                                 </div>
                                             )
                                         }
-                                    </Link>
-                                    <p className={`text-lg font-semibold capitalize ${scroll ? 'text-black' : `${path !== '/' ? "text-black" : "text-back_white"}`}`}>{`${user.firstName}`}</p>
+                                    </div>
+                                    <p className={`text-lg font-semibold capitalize text-black`}>{`${user.firstName}`}</p>
                                 </div>
                             </div>
                         ) : (
                             <div className='hidden gap-4 lg:flex'>
-                                <Link to='/login'>
-                                    <motion.button
-                                        whileHover={{ scale: 1.1 }}
-                                        whileTap={{ scale: 0.9 }}
-                                        className='bg-primary text-white px-8 h-12 text-sm rounded-xl font-semibold'>
-                                        Login
-                                    </motion.button>
-                                </Link>
-                                <Link to='/register'>
-                                    <motion.button
-                                        whileHover={{ scale: 1.1 }}
-                                        whileTap={{ scale: 0.9 }}
-                                        className={`outline-2 outline ${scroll ? 'outline-primary text-primary' : 'outline-primary text-primary'}  px-8 h-12 text-md rounded-xl font-bold`}>
-                                        Register
-                                    </motion.button>
-                                </Link>
+                                <motion.button
+                                    onClick={() => redirect('/login')}
+                                    whileHover={{ scale: 1.1 }}
+                                    whileTap={{ scale: 0.9 }}
+                                    className='bg-primary text-white px-8 h-12 text-sm rounded-xl font-semibold'>
+                                    Login
+                                </motion.button>
+
+                                <motion.button
+                                    onClick={() => redirect('/register')}
+                                    whileHover={{ scale: 1.1 }}
+                                    whileTap={{ scale: 0.9 }}
+                                    className={`outline-2 outline ${scroll ? 'outline-primary text-primary' : 'outline-primary text-primary'}  px-8 h-12 text-md rounded-xl font-bold`}>
+                                    Register
+                                </motion.button>
                             </div>
                         )
                     }

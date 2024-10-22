@@ -5,6 +5,24 @@
 @tailwind utilities;
 
 
+/* ease font */
+
+
+@font-face {
+  font-family: "Ease";
+  src: url("./assets/fonts/ease/ease-bold.otf") format("opentype");
+  font-weight: bold;
+  font-style: normal;
+}
+
+
+/* ease font */
+.ease {
+  font-family: "Ease";
+
+}
+
+/* poppins font */
 .poppins-thin {
   font-family: "Poppins", sans-serif;
   font-weight: 100;

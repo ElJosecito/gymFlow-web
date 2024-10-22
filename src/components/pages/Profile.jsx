@@ -32,20 +32,25 @@ function Profile() {
     const [user, setUser] = useState({})
 
     useEffect(() => {
-        if (token) {
-            getUser(userId).then((response) => {
-                setUser(response)
-            })
-        }
+
 
         getGymEntry().then((response) => {
             setCurrentCapacity(response)
         })
-    }, [token, userId, currentCapacity])
+    }, [ ])
 
 
     useEffect(() => {
-        const socket = io("http://localhost:3000"); // Conectar al servidor
+        if (token) {
+            getUser(userId).then((response) => {
+                setUser(response)
+                console.log(response)
+            })
+        }
+    }, [token, userId])
+
+    useEffect(() => {
+        const socket = io("http://10.0.0.178:3000"); // Conectar al servidor
 
         // Escuchar el evento gymStatusUpdate
         socket.on("gymStatusUpdate", (data) => {
@@ -61,15 +66,19 @@ function Profile() {
 
 
     const [date, setDate] = useState("");
-    const [endDate, setEndDate] = useState("");
+    const [endDate, setEndDate] = useState(null);
 
     useEffect(() => {
 
         setDate(format(user.createdAt, "long"))
-        setEndDate(format(user.updatedAt, "long"))
+        if(user.memberShipEnd !== null){
+            setEndDate(format(user.memberShipEnd, "long"))
+        }else{
+            setEndDate(new Date())
+        }
 
 
-    }, [user.createdAt, user.updatedAt])
+    }, [user])
 
 
     //toast

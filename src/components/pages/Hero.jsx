@@ -1,7 +1,6 @@
 import { motion } from 'framer-motion'
-import { PlayCircle, CircleCheck, Ban, XCircle } from 'lucide-react'
+import { CircleCheck, Ban, XCircle } from 'lucide-react'
 
-import muscle from '../../assets/images/muscle.png'
 import rectangle1 from '../../assets/images/Rectangle1.png'
 import rectangle2 from '../../assets/images/Rectangle2.png'
 import rectangle3 from '../../assets/images/Rectangle3.png'
@@ -11,6 +10,12 @@ import trainer1 from '../../assets/images/trainer1.png'
 import trainer2 from '../../assets/images/trainer2.png'
 import trainer3 from '../../assets/images/trainer3.png'
 
+// hero images
+import hero from '../../assets/images/hero.jpg'
+import hero1 from '../../assets/images/hero1.jpg'
+import hero2 from '../../assets/images/hero2.jpg'
+import hero3 from '../../assets/images/hero3.jpg'
+import hero4 from '../../assets/images/hero4.jpg'
 
 import Modal from 'react-modal';
 import { useState } from 'react';
@@ -19,7 +24,19 @@ import { updateUser } from '../../api/user'
 
 import { useAuthStore } from '../../store/auth'
 
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+
+// Import Swiper React components
+import { Swiper, SwiperSlide } from 'swiper/react';
+
+// Import Swiper styles
+import 'swiper/css';
+import 'swiper/css/pagination';
+import 'swiper/css/navigation';
+
+
+// import required modules
+import { EffectFade, Autoplay, Pagination } from 'swiper/modules';
 
 function Hero() {
 
@@ -37,42 +54,59 @@ function Hero() {
 
     return (
         <>
-            <section className="min-h-screen flex items-center justify-center relative">
-                <div className="absolute top-0 left-0 h-screen w-9/12 hidden 2xl:block"></div>
-                <div className="absolute top-0 right-0 h-screen w-3/12 bg-[#1F1F1F] hidden 2xl:block"></div>
-                <div className="h-screen w-full max-w-screen-2xl flex items-center z-10 flex-col lg:flex-row ">
-                    <div className="flex flex-col items-center lg:items-start lg:w-1/2 pt-32 text-center lg:text-start">
-                        {/*  */}
-                        <h1 className="lg:text-7xl text-5xl bungee-tint-regular">
-                            Elavate Your <br /> Workout
-                        </h1>
-                        {/*  */}
-                        <p className="lg:text-sm text-xs mt-8 text-[#00000056] md:pr-20 max-w-screen-sm px-3">
-                            Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                            Lorem Ipsum has been the industrys standard dummy text ever since the 1500s,
-                            when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+
+            <section className="w-full h-screen flex justify-center">
+                {/* autoplay swiper carrousel, with title in the middle */}
+                <Swiper
+                    modules={[EffectFade, Autoplay, Pagination]}
+                    spaceBetween={0}
+                    slidesPerView={1}
+
+                    autoplay={{ delay: 2500, disableOnInteraction: false }}
+                    loop={true}
+                    className="w-full h-full "
+                >
+                    {
+                        [hero, hero1, hero2, hero3, hero4].map((item, index) => (
+                            <SwiperSlide key={index}>
+                                <div className="w-full h-full flex justify-center items-center filter brightness-50">
+                                    <img src={item} alt="hero" className="w-full h-full object-cover" />
+                                </div>
+                            </SwiperSlide>
+                        ))
+                    }
+
+                </Swiper>
+
+                <div className="max-w-screen-2xl w-full h-full flex justify-between items-center absolute z-10 ">
+                    <div className=" px-5 w-full md:w-3/5 flex flex-col justify-center items-center md:items-start md:pl-8" >
+                        <p className="text-lg md:text-base opacity-50 hidden md:flex text-white ">
+                            We Are The Best Gym In The World
                         </p>
-                        {/*  */}
-                        <div className='flex justify-center lg:justify-start items-start mt-7 gap-6 w-full'>
-                            <motion.button
-                                whileHover={{ scale: 1.1 }}
-                                whileTap={{ scale: 0.9 }}
-                                className='bg-primary text-white rounded-xl p-4 font-semibold '>Book an Appointment
-                            </motion.button>
-                            <motion.button
-                                whileHover={{ scale: 1.1 }}
-                                whileTap={{ scale: 0.9 }}
-                                className=' text-secondary rounded-xl p-4 font-semibold flex'>
-                                <PlayCircle className='mr-2' />
-                                Play Videos
-                            </motion.button>
-                        </div>
-                    </div>
-                    {/*  */}
-                    <div className="lg:w-1/2 w-full flex justify-center items-end h-screen relative">
-                        <img src={muscle} alt="muscle" className="lg:w-full absolute w-96" />
+
+                        <h1 className="text-5xl text-center md:text-start md:text-8xl font-bold ease text-white">
+                            WLCOME TO <span className="text-primary">REVOLUTIN</span>{" "}
+                            Gym
+                        </h1>
+                        <p className="text-sm text-center md:text-start md:text-base mt-5 opacity-60 text-white md:pr-44">
+                            We are the best Gym in the world. We have the best
+                            coaches and the best facilities. We are here to help you become the
+                            best basketball player you can be. We have helped many players
+                            achieve their dreams and we can help you too.
+                        </p>
+                        <motion.button
+                            whileHover={{ scale: 1.1 }}
+                            whileTap={{ scale: 0.9 }}
+                            className="mt-5 bg-primary text-white px-8 py-3 font-bold rounded-xl "
+                        >
+                            Get Started
+                        </motion.button>
+
                     </div>
                 </div>
+
+
+
             </section>
 
             {/* services section */}
@@ -382,14 +416,20 @@ function Hero() {
 
                 {/* payment section */}
                 <section className="flex justify-start w-full">
-                    <div className="w-1/2 flex justify-center items-center">
+                    <div className={`${isAuth ? " w-1/2" : "w-full"} flex justify-center items-center`}>
                         {
                             !isAuth ? (
-                                <motion.button
-                                    whileHover={{ scale: 1.1 }}
-                                    whileTap={{ scale: 0.9 }}
-                                    className='bg-primary text-white rounded-xl p-4 font-semibold '>login
-                                </motion.button>
+                                <div className='flex flex-col items-center'>
+                                    <h1 className='font-bold text-2xl'>Please Login to continue</h1>
+                                    <p className='text-[#8b8b8b] mt-4'>You need to login to continue with the payment</p>
+                                    <Link to='/login'>
+                                        <motion.button
+                                            whileHover={{ scale: 1.05 }}
+                                            whileTap={{ scale: 0.9 }}
+                                            className='bg-primary text-white rounded-xl p-4 px-10 font-semibold mt-8'
+                                        >Login</motion.button>
+                                    </Link>
+                                </div>
                             ) : (
                                 !payment ? (
                                     < form className="w-full px-10 ">
@@ -453,7 +493,7 @@ function Hero() {
                                     </form>
                                 ) : (
 
-                                    <div className='flex flex-col items-center'>
+                                    <div className='flex flex-col items-center w-full'>
                                         <h1 className='font-bold text-2xl'>Payment Successfull</h1>
                                         <p className='text-[#8b8b8b] mt-4'>Redirecting to profile page...</p>
                                     </div>
@@ -461,10 +501,12 @@ function Hero() {
                             )
                         }
                     </div>
-                    <div className="w-1/2 flex justify-center items-center">
+                    <div className={`${isAuth ? " w-1/2" : ""} flex justify-center items-center`}>
                         {/* plan description */}
 
-                        <div className='flex flex-col outline outline-[#d6d6d6] rounded-2xl overflow-hidden w-[400px] h-[500px] px-5 py-8'>
+                        {
+                            isAuth? (
+                                <div className='flex flex-col outline outline-[#d6d6d6] rounded-2xl overflow-hidden w-[400px] h-[500px] px-5 py-8'>
                             <h1 className='font-bold text-base capitalize'>{plan.name}</h1>
                             <div className='flex items-end mt-4'>
                                 <p className='font-bold text-6xl leading-none '>{`$${plan.price}`}</p>
@@ -520,6 +562,8 @@ function Hero() {
                                 </div>
                             </div>
                         </div>
+                            ) : null
+                        }
                     </div>
 
                 </section>
