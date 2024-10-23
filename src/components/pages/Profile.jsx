@@ -32,11 +32,11 @@ function Profile() {
     const [user, setUser] = useState({})
 
     useEffect(() => {
-
-
         getGymEntry().then((response) => {
             setCurrentCapacity(response)
         })
+
+        window.scrollTo(0, 0)
     }, [ ])
 
 
@@ -71,10 +71,11 @@ function Profile() {
     useEffect(() => {
 
         setDate(format(user.createdAt, "long"))
-        if(user.memberShipEnd !== null){
+
+        if (user.memberShipEnd) {
             setEndDate(format(user.memberShipEnd, "long"))
         }else{
-            setEndDate(new Date())
+            setEndDate("No memberShip")
         }
 
 
@@ -179,7 +180,7 @@ function Profile() {
                                             </div>
 
                                             <div>
-                                                <p className="text-normal font-bold mb-2 text-[#8b8b8b]">Updated At</p>
+                                                <p className="text-normal font-bold mb-2 text-[#8b8b8b]">Next Payment</p>
                                                 <input type="text" disabled placeholder={endDate} className="w-full h-10 rounded-md p-3 px-4 outline outline-2 outline-[#e4e4e4]" />
                                             </div>
                                         </div>

@@ -67,8 +67,8 @@ function Header() {
         <header className='w-full flex justify-center fixed z-[10000]  '>
             <div className={` w-full  px-0`}>
                 <nav className={`flex justify-between items-center w-full h-20 px-8 rounded-b-md transition-all duration-500  ${scroll ? 'bg-white shadow-xl' : 'bg-white'}`}>
-                    <div className='text-2xl font-bold'>
-                        <img src={logo} alt="" className='w-14 ' />
+                    <div className='text-2xl font-bold cursor-pointer' onClick={() => redirect('/')}>
+                        <img src={logo} alt="" className='w-14' />
 
                     </div>
                     <ul className='lg:flex gap-8 font-semibold text-base hidden'>
@@ -76,13 +76,13 @@ function Header() {
                             <a href='/#'>Home</a>
                         </motion.li>
                         <motion.li whileHover={{ scale: 1.2 }} className='text-sm'>
-                            <a href='#services'>Services</a>
+                            <a href='/#services'>About</a>
                         </motion.li>
                         <motion.li whileHover={{ scale: 1.2 }} className='text-sm'>
-                            <a href='#about'>About</a>
+                            <a href='/#trainers'>Trainers</a>
                         </motion.li>
                         <motion.li whileHover={{ scale: 1.2 }} className='text-sm'>
-                            <a href='#contact'>Contact</a>
+                            <a href='/#plans'>Plans</a>
                         </motion.li>
                     </ul>
 
@@ -91,7 +91,7 @@ function Header() {
                             // user logged profile
                             <div className='lg:flex gap-4 items-center hidden'>
                                 <div className='flex items-center gap-4 '>
-                                    <div className='flex items-center gap-4' onClick={() => redirect('/profile')}>
+                                    <div className='flex items-center gap-4 cursor-pointer' onClick={() => redirect('/profile')}>
                                         {
                                             user.image ? (
                                                 <img src={`${user.image}`} alt="user" className='w-10 h-10 rounded-full' />

@@ -55,6 +55,7 @@ function Hero() {
     return (
         <>
 
+            {/* hero section */}
             <section className="w-full h-screen flex justify-center">
                 {/* autoplay swiper carrousel, with title in the middle */}
                 <Swiper
@@ -86,12 +87,12 @@ function Hero() {
 
                         <h1 className="text-5xl text-center md:text-start md:text-8xl font-bold ease text-white">
                             WLCOME TO <span className="text-primary">REVOLUTIN</span>{" "}
-                            Gym
+                            GYM
                         </h1>
                         <p className="text-sm text-center md:text-start md:text-base mt-5 opacity-60 text-white md:pr-44">
                             We are the best Gym in the world. We have the best
                             coaches and the best facilities. We are here to help you become the
-                            best basketball player you can be. We have helped many players
+                            best version of you that you can be. We have helped many players
                             achieve their dreams and we can help you too.
                         </p>
                         <motion.button
@@ -110,7 +111,7 @@ function Hero() {
             </section>
 
             {/* services section */}
-            <div className="flex justify-evenly bg-[#1F1F1F] py-16 flex-wrap gap-5">
+            <section className="flex justify-evenly bg-[#1F1F1F] py-16 flex-wrap gap-5" id='services'>
                 <div className='text-back_white w-48'>
                     <h1 className='font-bold text-2xl'>Heading</h1>
                     <p className='font-light text-xs'>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
@@ -127,9 +128,10 @@ function Hero() {
                     <h1 className='font-bold text-2xl'>Heading</h1>
                     <p className='font-light text-xs'>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
                 </div>
-            </div>
+            </section>
 
-            <section className=" flex  justify-center py-28">
+            {/* about section */}
+            <section className=" flex  justify-center py-28" id='about'>
                 <div className="w-full max-w-screen-2xl">
                     <div className='flex flex-col items-center'>
                         <h2 className="text-5xl font-bold text-center w-full ">Why Choose Us?</h2>
@@ -206,8 +208,8 @@ function Hero() {
                 </div>
             </section>
 
-
-            <section className="flex justify-center pb-40">
+            {/* trainers section */}
+            <section className="flex justify-center pb-40" id='trainers'>
                 <div className='w-full max-w-screen-2xl'>
                     <div className='flex flex-col items-center'>
                         <h2 className="text-5xl font-bold text-center w-full">Meet Our Trainers</h2>
@@ -255,8 +257,7 @@ function Hero() {
             </section>
 
             {/* plans section */}
-
-            <section className="min-h-screen flex justify-center">
+            <section className="min-h-screen flex justify-center" id='plans'>
                 <div className='w-full max-w-screen-2xl h-fit'>
 
                     <div className='flex flex-col items-center'>
@@ -482,7 +483,7 @@ function Hero() {
                                             whileTap={{ scale: 0.9 }}
                                             className='bg-primary text-white rounded-xl p-4 font-semibold mt-8 w-full'
                                             onClick={() => {
-                                                updateUser(userId, { memberShip: plan.name, active: true })
+                                                updateUser(userId, { memberShip: plan.name, active: true, memberShipEnd: new Date().setMonth(new Date().getMonth() + 1) })
                                                 setPayment(true)
                                                 setTimeout(() => {
                                                     setModalIsOpen(false)
