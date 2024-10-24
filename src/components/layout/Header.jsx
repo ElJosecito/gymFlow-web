@@ -12,7 +12,7 @@ import { getUser } from '../../api/user'
 
 //navigation
 import { Link, useLocation, useNavigate } from 'react-router-dom'
-import logo from '../../assets/images/logo.png'
+import logo from '../../assets/images/Logo.png'
 
 function Header() {
 
@@ -93,7 +93,7 @@ function Header() {
                                 <div className='flex items-center gap-4 '>
                                     <div className='flex items-center gap-4 cursor-pointer' onClick={() => redirect('/profile')}>
                                         {
-                                            user.image ? (
+                                            user?.image ? (
                                                 <img src={`${user.image}`} alt="user" className='w-10 h-10 rounded-full' />
                                             ) : (
                                                 <div className='w-10 h-10 bg-green-700 rounded-full flex items-center justify-center'>
@@ -102,7 +102,7 @@ function Header() {
                                             )
                                         }
                                     </div>
-                                    <p className={`text-lg font-semibold capitalize text-black`}>{`${user.firstName}`}</p>
+                                    <p className={`text-lg font-semibold capitalize text-black`}>{`${user?.firstName}`}</p>
                                 </div>
                             </div>
                         ) : (
@@ -153,8 +153,8 @@ function Header() {
                                     <div className='flex items-center gap-4'>
                                         <Link to='/profile'>
                                             {
-                                                user.image ? (
-                                                    <img src={`${user.image}`} alt="user" className='w-10 h-10 rounded-full' />
+                                                user?.image ? (
+                                                    <img src={`${user?.image}`} alt="user" className='w-10 h-10 rounded-full' />
                                                 ) : (
                                                     <div className='w-10 h-10 bg-green-700 rounded-full flex items-center justify-center'>
                                                         <User />
@@ -162,7 +162,7 @@ function Header() {
                                                 )
                                             }
                                         </Link>
-                                        <p className={`text-lg font-semibold capitalize ${scroll ? 'text-black' : `${path !== '/' ? "text-black" : "text-back_white"}`}`}>{`${user.firstName} ${user.lastName}`}</p>
+                                        <p className={`text-lg font-semibold capitalize ${scroll ? 'text-black' : `${path !== '/' ? "text-black" : "text-back_white"}`}`}>{`${user?.firstName} ${user?.lastName}`}</p>
                                     </div>
                                 </div>
                             ) : (

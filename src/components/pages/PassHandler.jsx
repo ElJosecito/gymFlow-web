@@ -1,3 +1,5 @@
+import { useEffect } from "react"
+
 import { useNavigate } from "react-router-dom"
 
 import { motion } from "framer-motion"
@@ -16,6 +18,11 @@ function PassHandler() {
         toast.success('Exit successful')
     }
 
+        // route name 
+        useEffect(() => {
+            document.title = "Pass Handler"
+        }, [])
+    
 
 
     return (

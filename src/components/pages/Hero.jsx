@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { CircleCheck, Ban, XCircle } from 'lucide-react'
 
@@ -10,15 +11,7 @@ import trainer1 from '../../assets/images/trainer1.png'
 import trainer2 from '../../assets/images/trainer2.png'
 import trainer3 from '../../assets/images/trainer3.png'
 
-// hero images
-import hero from '../../assets/images/hero.jpg'
-import hero1 from '../../assets/images/hero1.jpg'
-import hero2 from '../../assets/images/hero2.jpg'
-import hero3 from '../../assets/images/hero3.jpg'
-import hero4 from '../../assets/images/hero4.jpg'
-
 import Modal from 'react-modal';
-import { useState } from 'react';
 
 import { updateUser } from '../../api/user'
 
@@ -46,10 +39,37 @@ function Hero() {
     const [payment, setPayment] = useState(false)
     const { userId, isAuth } = useAuthStore()
 
+    const [cardNumber, setCardNumber] = useState('');
+    const [expiryDate, setExpiryDate] = useState('');
+    const [cvv, setCvv] = useState('');
+
+    // Formatear el número de tarjeta de crédito (agregar espacio cada 4 dígitos)
+    const formatCardNumber = (value) => {
+        return value.replace(/\s?/g, '').replace(/(\d{4})/g, '$1 ').trim();
+    };
+
+    // Formatear la fecha de expiración (MM/YY)
+    const formatExpiryDate = (value) => {
+        return value
+            .replace(/\s?/g, '') // Eliminar espacios
+            .replace(/[^0-9]/g, '') // Eliminar cualquier carácter no numérico
+            .replace(/(\d{2})(\d{1,2})/, '$1/$2') // Insertar "/" después de los primeros dos dígitos
+            .slice(0, 5); // Limitar la longitud a 5 caracteres (MM/YY)
+    };
+
     const navigate = useNavigate()
 
     // modal
     Modal.setAppElement('#root');
+
+    //image array
+    const images = [
+        "https://imgur.com/11LmMAZ.png",
+        "https://imgur.com/3JuJAz4.png",
+        "https://imgur.com/WJVQYX5.png",
+        "https://imgur.com/imK6kRn.png",
+        "https://imgur.com/7ltqB4k.png"
+    ];
 
 
     return (
@@ -67,15 +87,17 @@ function Hero() {
                     loop={true}
                     className="w-full h-full "
                 >
-                    {
-                        [hero, hero1, hero2, hero3, hero4].map((item, index) => (
-                            <SwiperSlide key={index}>
-                                <div className="w-full h-full flex justify-center items-center filter brightness-50">
-                                    <img src={item} alt="hero" className="w-full h-full object-cover" />
-                                </div>
-                            </SwiperSlide>
-                        ))
-                    }
+                    {images.map((item, index) => (
+                        <SwiperSlide key={index}>
+                            <div className="w-full h-full flex justify-center items-center relative">
+                                <img
+                                    src={item}
+                                    alt={`slide-${index}`}
+                                    className="w-full h-full object-cover filter brightness-50"
+                                />
+                            </div>
+                        </SwiperSlide>
+                    ))}
 
                 </Swiper>
 
@@ -435,26 +457,57 @@ function Hero() {
                                 !payment ? (
                                     < form className="w-full px-10 ">
                                         <div className='flex flex-col'>
-                                            <label htmlFor="" className='font-bold mb-2 text-[#8b8b8b]'>Full Name</label>
-                                            <input type="text" className="outline outline-1 outline-[#c0c0c0] px-3 rounded-lg  py-2" />
-                                        </div>
-                                        {/* card Number */}
-                                        <div className='flex flex-col mt-4'>
-                                            <label htmlFor="" className='font-bold mb-2 text-[#8b8b8b]'>Card Number</label>
-                                            <input type="text" className="outline outline-1 outline-[#c0c0c0] px-3 rounded-lg  py-2" />
-                                        </div>
-
-                                        <div className='flex gap-4 mt-4  justify-between'>
                                             <div className='flex flex-col'>
-                                                <label htmlFor="" className='font-bold mb-2 text-[#8b8b8b]'>Expiry Date</label>
-                                                <input type="text" className="outline outline-1 outline-[#c0c0c0] px-3 rounded-lg w-52 py-2" />
+                                                <label htmlFor="" className='font-bold mb-2 text-[#8b8b8b]'>Full Name</label>
+                                                <input
+                                                    type="text"
+                                                    className="outline outline-1 outline-[#c0c0c0] px-3 rounded-lg  py-2"
+                                                    placeholder="John Doe"
+
+                                                />
                                             </div>
-                                            <div className='flex flex-col'>
-                                                <label htmlFor="" className='font-bold mb-2 text-[#8b8b8b]'>CVV</label>
-                                                <input type="text" className="outline outline-1 outline-[#c0c0c0] px-3 rounded-lg w-36 py-2" />
+
+                                            {/* Número de tarjeta */}
+                                            <div className='flex flex-col mt-4'>
+                                                <label htmlFor="" className='font-bold mb-2 text-[#8b8b8b]'>Card Number</label>
+                                                <input
+                                                    type="text"
+                                                    className="outline outline-1 outline-[#c0c0c0] px-3 rounded-lg  py-2"
+                                                    value={cardNumber}
+                                                    onChange={(e) => setCardNumber(formatCardNumber(e.target.value))}
+                                                    maxLength={19} // 16 dígitos + 3 espacios
+                                                    placeholder="1234 5678 9012 3456"
+                                                />
+                                            </div>
+
+                                            <div className='flex gap-4 mt-4 justify-between'>
+                                                {/* Fecha de expiración */}
+                                                <div className='flex flex-col'>
+                                                    <label htmlFor="" className='font-bold mb-2 text-[#8b8b8b]'>Expiry Date</label>
+                                                    <input
+                                                        type="text"
+                                                        className="outline outline-1 outline-[#c0c0c0] px-3 rounded-lg w-52 py-2"
+                                                        value={expiryDate}
+                                                        onChange={(e) => setExpiryDate(formatExpiryDate(e.target.value))}
+                                                        maxLength={5} // MM/YY formato
+                                                        placeholder="MM/YY"
+                                                    />
+                                                </div>
+
+                                                {/* CVV */}
+                                                <div className='flex flex-col'>
+                                                    <label htmlFor="" className='font-bold mb-2 text-[#8b8b8b]'>CVV</label>
+                                                    <input
+                                                        type="text"
+                                                        className="outline outline-1 outline-[#c0c0c0] px-3 rounded-lg w-36 py-2"
+                                                        value={cvv}
+                                                        onChange={(e) => setCvv(e.target.value)}
+                                                        maxLength={3} // CVV normalmente tiene 3 dígitos
+                                                        placeholder="123"
+                                                    />
+                                                </div>
                                             </div>
                                         </div>
-
                                         {/* payment description */}
 
                                         <div className='flex flex-col mt-7 px-2'>
@@ -506,63 +559,63 @@ function Hero() {
                         {/* plan description */}
 
                         {
-                            isAuth? (
+                            isAuth ? (
                                 <div className='flex flex-col outline outline-[#d6d6d6] rounded-2xl overflow-hidden w-[400px] h-[500px] px-5 py-8'>
-                            <h1 className='font-bold text-base capitalize'>{plan.name}</h1>
-                            <div className='flex items-end mt-4'>
-                                <p className='font-bold text-6xl leading-none '>{`$${plan.price}`}</p>
-                                <p className='font-bold text-sm pb-3'> /Per Month</p>
-                            </div>
-                            <p className='text-xs text-[#00000056] font-medium mt-3'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut </p>
+                                    <h1 className='font-bold text-base capitalize'>{plan.name}</h1>
+                                    <div className='flex items-end mt-4'>
+                                        <p className='font-bold text-6xl leading-none '>{`$${plan.price}`}</p>
+                                        <p className='font-bold text-sm pb-3'> /Per Month</p>
+                                    </div>
+                                    <p className='text-xs text-[#00000056] font-medium mt-3'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut </p>
 
-                            {/* beneficts list */}
+                                    {/* beneficts list */}
 
-                            <ul className='mt-8'>
-                                <li className='flex items-center gap-2 text-[#00000056] font-semibold my-2'>
-                                    <CircleCheck size={20} color='green' strokeWidth={2.5} absoluteStrokeWidth />
-                                    <p>Free Training</p>
-                                </li>
-                                <li className='flex items-center gap-2 text-[#00000056] font-semibold my-2'>
-                                    <CircleCheck size={20} color='green' strokeWidth={2.5} absoluteStrokeWidth />
-                                    <p>Free Training</p>
-                                </li>
-                                <li className='flex items-center gap-2 text-[#00000056] font-semibold my-2'>
-                                    <CircleCheck size={20} color='green' strokeWidth={2.5} absoluteStrokeWidth />
-                                    <p>Free Training</p>
-                                </li>
-                                <li className='flex items-center gap-2 text-[#00000056] font-semibold my-2'>
-                                    <Ban size={20} color='red' strokeWidth={2.5} absoluteStrokeWidth />
-                                    <p>Free Training</p>
-                                </li>
-                                <li className='flex items-center gap-2 text-[#00000056] font-semibold my-2'>
-                                    <Ban size={20} color='red' strokeWidth={2.5} absoluteStrokeWidth />
-                                    <p>Free Training</p>
-                                </li>
-                            </ul>
-                            {/* change plans */}
-                            <div className='flex justify-center items-center mt-8'>
-                                <p className='text-[#00000056]'>Change Plan</p>
-                            </div>
-                            <div className='flex justify-between mt-5'>
-                                <div className='hover:border-b-4 cursor-pointer duration-200 border-blue-500'
-                                    onClick={() => setPlan({ name: 'basic', price: 5 })}
-                                >
-                                    <p className='font-semibold'>Basic</p>
+                                    <ul className='mt-8'>
+                                        <li className='flex items-center gap-2 text-[#00000056] font-semibold my-2'>
+                                            <CircleCheck size={20} color='green' strokeWidth={2.5} absoluteStrokeWidth />
+                                            <p>Free Training</p>
+                                        </li>
+                                        <li className='flex items-center gap-2 text-[#00000056] font-semibold my-2'>
+                                            <CircleCheck size={20} color='green' strokeWidth={2.5} absoluteStrokeWidth />
+                                            <p>Free Training</p>
+                                        </li>
+                                        <li className='flex items-center gap-2 text-[#00000056] font-semibold my-2'>
+                                            <CircleCheck size={20} color='green' strokeWidth={2.5} absoluteStrokeWidth />
+                                            <p>Free Training</p>
+                                        </li>
+                                        <li className='flex items-center gap-2 text-[#00000056] font-semibold my-2'>
+                                            <Ban size={20} color='red' strokeWidth={2.5} absoluteStrokeWidth />
+                                            <p>Free Training</p>
+                                        </li>
+                                        <li className='flex items-center gap-2 text-[#00000056] font-semibold my-2'>
+                                            <Ban size={20} color='red' strokeWidth={2.5} absoluteStrokeWidth />
+                                            <p>Free Training</p>
+                                        </li>
+                                    </ul>
+                                    {/* change plans */}
+                                    <div className='flex justify-center items-center mt-8'>
+                                        <p className='text-[#00000056]'>Change Plan</p>
+                                    </div>
+                                    <div className='flex justify-between mt-5'>
+                                        <div className='hover:border-b-4 cursor-pointer duration-200 border-blue-500'
+                                            onClick={() => setPlan({ name: 'basic', price: 5 })}
+                                        >
+                                            <p className='font-semibold'>Basic</p>
+                                        </div>
+
+                                        <div className='hover:border-b-4 cursor-pointer duration-200 border-blue-500' onClick={
+                                            () => setPlan({ name: 'gold', price: 15 })
+                                        }>
+                                            <p className='font-semibold'>Gold</p>
+                                        </div>
+
+                                        <div className='hover:border-b-4 cursor-pointer duration-200 border-blue-500' onClick={
+                                            () => setPlan({ name: 'platinum', price: 20 })
+                                        }>
+                                            <p className='font-semibold'>Platinum</p>
+                                        </div>
+                                    </div>
                                 </div>
-
-                                <div className='hover:border-b-4 cursor-pointer duration-200 border-blue-500' onClick={
-                                    () => setPlan({ name: 'gold', price: 15 })
-                                }>
-                                    <p className='font-semibold'>Gold</p>
-                                </div>
-
-                                <div className='hover:border-b-4 cursor-pointer duration-200 border-blue-500' onClick={
-                                    () => setPlan({ name: 'platinum', price: 20 })
-                                }>
-                                    <p className='font-semibold'>Platinum</p>
-                                </div>
-                            </div>
-                        </div>
                             ) : null
                         }
                     </div>

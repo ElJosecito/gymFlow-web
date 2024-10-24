@@ -37,14 +37,13 @@ function Profile() {
         })
 
         window.scrollTo(0, 0)
-    }, [ ])
+    }, [])
 
 
     useEffect(() => {
         if (token) {
             getUser(userId).then((response) => {
                 setUser(response)
-                console.log(response)
             })
         }
     }, [token, userId])
@@ -74,7 +73,7 @@ function Profile() {
 
         if (user.memberShipEnd) {
             setEndDate(format(user.memberShipEnd, "long"))
-        }else{
+        } else {
             setEndDate("No memberShip")
         }
 
@@ -86,14 +85,21 @@ function Profile() {
 
     useEffect(() => {
         if (gymStatus) {
-            toast.success(gymStatus.message, {
-                duration: 4000,
-                position: "bottom-right"
+            if (gymStatus.message) {
+                toast.success(gymStatus.message, {
+                    duration: 4000,
+                    position: "bottom-right"
+                })
             }
-            )
         }
     }, [gymStatus])
 
+    // route name 
+    useEffect(() => {
+        document.title = "Profile"
+    }, [])
+
+    // image upload
     const [image, setImage] = useState('')
 
     const handleImageChange = (e) => {

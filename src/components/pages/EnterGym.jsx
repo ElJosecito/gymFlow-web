@@ -54,6 +54,12 @@ function EnterGym() {
         }
     }, [user])
 
+        // route name 
+        useEffect(() => {
+            document.title = "Enter Gym"
+        }, [])
+    
+
     return (
         <>
             <section className={`w-full h-screen flex items-center justify-center ${!user ? "" : user.active === true ? "bg-green-500" : "bg-red-600"}`}>
