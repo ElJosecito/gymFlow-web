@@ -9,6 +9,7 @@ export const getGymEntry = async () => {
         return response.data;
     } catch (error) {
         console.error(error);
+        return error;
     }
 };
 
@@ -19,6 +20,7 @@ export const enterGym = async (data) => {
         return response.data;
     } catch (error) {
         console.error(error);
+        return error;
     }
 };
 
@@ -30,6 +32,7 @@ export const exitGym = async () => {
         return response.data;
     } catch (error) {
         console.error(error);
+        return error;
     }
 }
 
@@ -41,5 +44,6 @@ export const getEntryById = async (id
         return response.data;
     } catch (error) {
         console.error(error);
+        return error;
     }
 }

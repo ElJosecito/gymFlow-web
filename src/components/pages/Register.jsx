@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 
 import { register } from "../../api/auth"
 
@@ -31,8 +31,8 @@ function Register() {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        
-        
+
+
         // check if one of the fields is empty
         if (!email || !password || !firstName || !lastName || !number) {
             return toast.error('Some fields are required')
@@ -61,6 +61,12 @@ function Register() {
             navigate('/login')
         }, 3300)
     }
+
+    // route name 
+    useEffect(() => {
+        document.title = "Register"
+    }, [])
+
 
     return (
 

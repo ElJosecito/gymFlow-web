@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { login } from '../../api/auth'
 
 import { useAuthStore } from '../../store/auth'
@@ -50,6 +50,12 @@ function Login() {
             }, 3000)
         }
     }
+
+            // route name 
+            useEffect(() => {
+                document.title = "Login"
+            }, [])
+        
 
     return (
         <>

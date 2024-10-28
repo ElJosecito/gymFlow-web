@@ -9,6 +9,7 @@ import { useNavigate } from "react-router-dom"
 
 
 import gif from "../../assets/images/nfc.gif"
+import toast, { Toaster } from "react-hot-toast"
 
 function EnterGym() {
 
@@ -27,10 +28,19 @@ function EnterGym() {
             id: gymId
         }
         const response = await enterGym(data)
-        setUser(response.user)
         console.log(response)
+
+        if (response.status === 500) {
+            toast.error("Invalid ID")
+
+            setTimeout(() => {
+                setLoading(false)
+            }, 3000)
+            return
+        }
+
+        setUser(response.user)
         setLoading(false)
-        
     }
 
     const handleLastEntry = async () => {
@@ -87,7 +97,7 @@ function EnterGym() {
 
                                                         {
                                                             user.isAdmin ?
-                                                                <p className="text-white">Admin</p> :
+                                                                <p className="font-bold text-2xl text-blue-600">Admin</p> :
                                                                 <p className="font-bold text-2xl text-red-600">Not Admin</p>
                                                         }
                                                         <CheckCircle2 size={48} color="white" />
@@ -151,6 +161,7 @@ function EnterGym() {
                     }
                 </div>
             </section>
+            <Toaster />
         </>
     )
 }

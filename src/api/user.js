@@ -8,6 +8,7 @@ export const getUser = async (id) => {
         return response.data;
     } catch (error) {
         console.error(error);
+        return error.response.data;
     }
 };
 
@@ -19,6 +20,7 @@ export const updateUser = async (id, data) => {
         return response.data;
     } catch (error) {
         console.error(error);
+        return error.response.data;
     }
 };
 
@@ -43,6 +45,7 @@ export const uploadImage = async (id, data) => {
         return response.data;
     } catch (error) {
         console.error(error);
+        return error.response.data;
     }
 };
 
